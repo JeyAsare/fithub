@@ -1,10 +1,11 @@
-body {
+body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-image: linear-gradient(to top, rgba(14, 148, 226, 0.751),rgb(219, 199, 199));
   }
 
-  main {
+  main{
     flex: 1 0 auto;
   }
 
@@ -13,14 +14,38 @@ body {
 }
 
 .brand-logo{
-    margin-left: 8px;
+    margin-left: 15px;
 }
 
-.inline-block img {
+.inline-block img{
     width: 100%;
 }
 
 .home-pics{
     position:relative;
     width: 350px;
+}
+
+.home-text-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.text-container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.home-text{
+    text-transform:uppercase;
+    text-decoration: underline;
+}
+
+.home-text, .home-para{
+    padding: 10px;
+    margin: 0;
+    color: orange;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.250);
 }
