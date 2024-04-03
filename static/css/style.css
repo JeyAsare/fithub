@@ -1,18 +1,23 @@
 body{
     min-height: 100vh;
     flex-direction: column;
-    background-image: linear-gradient(to top, rgba(14, 148, 226, 0.751),rgb(219, 199, 199));
+    background-image: linear-gradient(to right, rgba(14, 148, 226, 0.751),rgb(219, 199, 199));
   }
+
 
   main{
     flex: 1 0 auto;
   }
 
+.register {
+    margin-bottom: 5px;
+}
+
+
 .page-footer{
     position:fixed;
     bottom: 0;
     width: 100%;
-    margin-top: 8px;
 }
 
 .text-shadow{
