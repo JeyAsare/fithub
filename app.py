@@ -111,8 +111,8 @@ def login():
 
 
 # Profile route
-@app.route("/profile<username>", methods=["GET","POST"])
-def profile():
+@app.route("/profile/<username>", methods=["GET","POST"])
+def profile(username):
     # grab the sessions user's username from the database
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
