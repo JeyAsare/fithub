@@ -2,10 +2,10 @@
 
 {% block content %}
 
-    <h3 class="center-align orange-text darken-2 text-shadow">REGISTER</h3>
+    <h3 class="center-align orange-text darken-2 text-shadow">LOG IN</h3>
 
     <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
             <div class="card-panel light-blue accent-3">
                 <!-- Username -->
                 <div class="row">
@@ -15,15 +15,6 @@
                         type="text" class="validate" pattern="^[a-zA-Z0-9]{5,15}$"
                         minlength="5" maxlength="15" required>
                         <label for="username">Username</label>
-                    </div>
-                </div>
-                <!-- Email Address -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="fa-solid fa-envelope prefix orange-text text-darken-2"></i>
-                        <input id="email_address" name="email_address"
-                        type="email" class="validate" required>
-                        <label for="email_address">Email Address</label>
                     </div>
                 </div>
                 <!-- Password -->
@@ -36,19 +27,10 @@
                         <label for="password">Password</label>
                     </div>
                 </div>
-                <!-- Confirm Password -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <i class="fa-solid fa-check prefix orange-text text-darken-2"></i>
-                        <input id="confirm_password" name="confirm_password" 
-                        type="password" class="validate" pattern="^[a-zA-Z0-9]{7,18}$"
-                        minlength="7" maxlength="18" required>
-                        <label for="confirm_password">Confirm Password</label>
-                    </div>
-                </div>
                 <!-- submit button-->
                 <div class="row">
-                    <button type="submit" class="col s12 btn-large light-blue accent-4">Register Now
+                    <button type="submit" 
+                    class="col s12 btn-large light-blue accent-4">log In
                     </button>
                 </div>
             </div>
@@ -57,8 +39,8 @@
     <div class="row">
         <div class="col s12">
             <p class="center-align">
-                Already a member? 
-                <a href="{{ url_for('login') }}" class="orange-text darken-2">Log In Here</a>
+                Don't have an account with us yet? 
+                <a href="{{url_for('register')}}" class="orange-text darken-2">Create new account</a>
             </p>
         </div>
     </div>
