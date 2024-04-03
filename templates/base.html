@@ -41,10 +41,22 @@
             <li><a href="#">Log Out</a></li>
           </ul>
     </header>
-
-    
+    <section>
+      <!-- flash messages -->
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="row flashes">
+              <h4 class="center-align white-text orange darken-2">{{ message }}</h4>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </section>
+    <main class="container">
     {% block content %}
     {% endblock %}
+  </main>
 
     <footer class="page-footer orange darken-2">
       <div class="container">

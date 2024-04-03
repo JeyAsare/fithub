@@ -37,7 +37,47 @@ def home():
 # Registration route
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    
+    if request.method == "POST":
+        
+        # check if username is already in the database
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        
+        # if username already exists in database
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+        
+        # normalize the email address before querying the database
+        normalized_email = request.form.get("email_address").lower().strip()
+        # check if email address is already in the database
+        existing_email = mongo.db.users.find_one(
+            {"email_address": normalized_email})
+        
+        # if email address already exists in the database
+        if existing_email:
+            flash("Email Address already exists")
+            return redirect(url_for("register"))
+        
+        # check if user passwords match
+        if request.form.get("password") != request.form.get("confirm_password"):
+            flash("Passwords do not match")
+            return redirect(url_for("register"))
+
+        # create a new user
+        register = {
+            "username" : request.form.get("username").lower(),
+            "email_address" : request.form.get("email_address"),
+            "password" : generate_password_hash(request.form.get("password")),
+            "profile_bio" : request.form.get("profile_bio")
+        }
+
+        mongo.db.users.insert_one(register)
+
+        # put the new user into session cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful !")
+
     return render_template("register.html")
 
 

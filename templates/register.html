@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h3 class="center-align white-text text-shadow">REGISTER</h3>
+    <h3 class="center-align orange-text darken-2 text-shadow">REGISTER</h3>
 
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
@@ -11,7 +11,9 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-user prefix orange-text text-darken-2"></i>
-                        <input id="username" name="username" type="text" class="validate">
+                        <input id="username" name="username" 
+                        type="text" class="validate" pattern="^[a-zA-Z0-9]{5,15}$"
+                        minlength="5" maxlength="15" required>
                         <label for="username">Username</label>
                     </div>
                 </div>
@@ -19,15 +21,18 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-envelope prefix orange-text text-darken-2"></i>
-                        <input id="email" name="email"type="email" class="validate">
-                        <label for="email">Email Address</label>
+                        <input id="email_address" name="email_address"
+                        type="email" class="validate" required>
+                        <label for="email_address">Email Address</label>
                     </div>
                 </div>
                 <!-- Password -->
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-lock prefix orange-text text-darken-2"></i>
-                        <input id="password" name="password" type="password" class="validate">
+                        <input id="password" name="password" 
+                        type="password" class="validate" pattern="^[a-zA-Z0-9]{7,18}$"
+                        minlength="7" maxlength="18" required>
                         <label for="password">Password</label>
                     </div>
                 </div>
@@ -35,7 +40,9 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fa-solid fa-check prefix orange-text text-darken-2"></i>
-                        <input id="confirm_password" name="confirm_password" type="password" class="validate">
+                        <input id="confirm_password" name="confirm_password" 
+                        type="password" class="validate" pattern="^[a-zA-Z0-9]{7,18}$"
+                        minlength="7" maxlength="18" required>
                         <label for="confirm_password">Confirm Password</label>
                     </div>
                 </div>
