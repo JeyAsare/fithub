@@ -25,7 +25,7 @@
                 <li><a href="#">Profile</a></li>
                 <li><a href="#">Community</a></li>
                 <li><a href="#">Log In</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
                 <li><a href="#">Log Out</a></li>
               </ul>
             </div>
@@ -37,7 +37,7 @@
             <li><a href="#">Profile</a></li>
             <li><a href="#">Community</a></li>
             <li><a href="#">Log In</a></li>
-            <li><a href="#">Register</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
             <li><a href="#">Log Out</a></li>
           </ul>
     </header>
@@ -47,11 +47,12 @@
     {% endblock %}
 
     <footer class="page-footer orange darken-2">
-          <div class="container">
-            © Jeremy Amoako 2024
-            <a href="#!"><i class="fa-brands fa-twitter right"></i></a>
-          </div>
-      </footer>
+      <div class="container">
+        <span class="footer-text">© 2024 - Jeremy Amoako</span>
+        <a href="#"><i class="fa-brands fa-linkedin right"></i></a>
+        <a href="#"><i class="fa-brands fa-github right"></i></a>
+      </div>
+    </footer>
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
