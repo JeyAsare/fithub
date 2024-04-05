@@ -3,18 +3,51 @@
 
     <h3 class="center-align orange-text darken-2">Add Workout</h3>
 
-    <div class="row">
+    <div class="row card-panel blue darken-2">
         <form class="col s12" method="POST" action="">
             <div class="row">
                 <div class="input-field col s12">
+                    <i class="fa-solid fa-list orange-text text-darken-2 prefix"></i>
+                    <select id="workout_category" name="workout_category" class="validate" required>
+                        <option value="" disabled selected>Choose your option</option>
+                        {% for workout in workouts %}
+                            <option value="{{ workout.workout_name }}">{{ workout.workout_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="workout_category">Select a Workout</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
                     <i class="fa-solid fa-dumbbell orange-text text-darken-2 prefix"></i>
-                    <input id="workout_title" name="workout_title" 
+                    <input id="workout_title" name="workout_title" minlength="5" maxlength="45"
                     type="text" class="validate" placeholder="What title are you giving your workout?" required>
                 </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-message orange-text text-darken-2 prefix"></i>
-                    <textarea name="workout_description" id="workout_description" 
-                    class="materialize-textarea validate" placeholder="Tell us how it went" required></textarea>
+                    <textarea name="workout_description" id="workout_description" minlength="5" maxlength="500"
+                    class="materialize-textarea validate" placeholder="Let us all know how you did :D" required></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-heart-pulse prefix orange-text text-darken-2"></i>
+                    <select id="rpe_scale" name="rpe_scale" class="validate" required>
+                        <option value="" disabled selected>Select RPE level</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <label for="rpe_scale">RPE Chart</label>
                 </div>
             </div>
         </form>

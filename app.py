@@ -136,7 +136,8 @@ def logout():
 # Add workout rout
 @app.route("/add_workout", methods=["GET", "POST"])
 def add_workout():
-    return render_template("add_workout.html")
+    workouts = mongo.db.workout.find()
+    return render_template("add_workout.html", workouts=workouts)
 
 
 # Run the app if executed directly
