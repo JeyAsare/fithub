@@ -80,3 +80,22 @@ body{
     line-height: 2;
 }
 
+.card-image > img {
+    opacity: 0.8;
+}
+
+.card-content > p {
+    text-align: center;
+}
+
+.make-post, .view-profile{
+    margin-top: 28px;
+}
+
+.make-post{
+    margin-left: 40px;
+}
+
+.view-profile{
+    margin-right:40px;
+}

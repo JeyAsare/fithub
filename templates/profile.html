@@ -2,22 +2,28 @@
 {% block content %}
 <!-- user's username tag-->
 <div class="row">
-    <div class="col s12 m6 l4 offset-l4">
+    <div class="col s12 m4 center-align">
+      <button type="submit" class="btn light-blue darken-1 view-profile">View Profile</button>
+    </div>
+    <div class="col s12 m4 center-align">
       <div class="card light-blue darken-1">
-        <div class="card-content white-text">
-          <span class="card-title center-align">{{ username }}'s Profile</span>
+        <div class="card-content orange-text text-darken-2">
+          <span class="card-title center-align">{{ username.capitalize() }}'s Profile</span>
         </div>
       </div>
+    </div>
+    <div class="col s12 m4 center-align">
+      <button type="submit" class="btn light-blue darken-1 make-post"><a class="white-text" href="{{ url_for('add_workout') }}">Make a Post</a></button>
     </div>
   </div>
 
   <div class="row">
     {% for post in posts %}
-    <div class="col s12 m7 l4 profile-content">
-      <div class="card">
+    <div class="col s12 m6 l4">
+      <div class="card post-content">
         <div class="card-image">
           <img src="/static/images/arm-workout.png">
-          <span class="card-title">{{ post.workout_category }}</span>
+          <span class="card-title">{{ post.workout_category.upper() }}</span>
         </div>
         <div class="card-content">
           <p>Created By: {{ post.profile_by }}</p>

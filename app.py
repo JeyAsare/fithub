@@ -133,6 +133,11 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
+# Add workout rout
+@app.route("/add_workout", methods=["GET", "POST"])
+def add_workout():
+    return render_template("add_workout.html")
+
 
 # Run the app if executed directly
 if __name__ == "__main__":

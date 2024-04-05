@@ -1,0 +1,23 @@
+{% extends "base.html"%}
+{% block content %}
+
+    <h3 class="center-align orange-text darken-2">Add Workout</h3>
+
+    <div class="row">
+        <form class="col s12" method="POST" action="">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-dumbbell orange-text text-darken-2 prefix"></i>
+                    <input id="workout_title" name="workout_title" 
+                    type="text" class="validate" placeholder="What title are you giving your workout?" required>
+                </div>
+                <div class="input-field col s12">
+                    <i class="fa-solid fa-message orange-text text-darken-2 prefix"></i>
+                    <textarea name="workout_description" id="workout_description" 
+                    class="materialize-textarea validate" placeholder="Tell us how it went" required></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock%}
