@@ -1,4 +1,7 @@
 body{
+    margin: 0;
+    padding: 0;
+    display: flex;
     min-height: 100vh;
     flex-direction: column;
     background-image: linear-gradient(to right, rgba(14, 148, 226, 0.751),rgb(219, 199, 199));
@@ -11,13 +14,6 @@ body{
 
 .register {
     margin-bottom: 5px;
-}
-
-
-.page-footer{
-    position:fixed;
-    bottom: 0;
-    width: 100%;
 }
 
 .text-shadow{
@@ -83,3 +79,4 @@ body{
 .flashes h4{
     line-height: 2;
 }
+

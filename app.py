@@ -116,7 +116,7 @@ def profile(username):
     # grab the sessions user's username from the database
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    posts = mongo.db.posts.find()
+    posts = list(mongo.db.posts.find())
 
     # defensive programming
     if session["user"]:
