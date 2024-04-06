@@ -4,11 +4,15 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
+from datetime import datetime
 from werkzeug.security import (
     generate_password_hash, check_password_hash)
+from werkzeug.utils import secure_filename
 # Check if the file env.py exists
 if os.path.exists("env.py"):
     import env 
+
+
 
 
 # Create an instance of Flask
@@ -21,9 +25,19 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 # Set secret key for session management
 app.secret_key = os.environ.get("SECRET_KEY")
 
+# Configure Media 
+app.config["UPLOAD_FOLDER"] = "uploads/"
+app.config["ALLOWED_EXTENSIONS_IMAGE"] = ['.jpg', 'jpeg', '.png', 'gif']
+app.config["ALLOWED_EXTENSIONS_VIDEO"] = ['mp4', 'mov', 'avi', 'mkv'] 
+
 
 # Initialize PyMongo
 mongo = PyMongo(app)
+
+
+def allowed_file(filename, allowed_extensions):
+    return '.' in filename and filename.rsplit(
+        '.', 1)[1] in allowed_extensions
 
 
 # Home route
@@ -136,6 +150,41 @@ def logout():
 # Add workout rout
 @app.route("/add_workout", methods=["GET", "POST"])
 def add_workout():
+    if request.method == "POST":
+
+        if "file" in request.files:
+
+            file = request.files['file']
+
+            if file:
+                if allowed_file(file.filename, app.config["ALLOWED_EXTENSIONS_VIDEO"]):
+                    filename = secure_filename(file.filename).lower()
+                    file.save(os.path.join(app.config["UPLOAD_FOLDER"], 'videos', filename))
+                    flash("Video uploaded successfully")
+            
+            elif allowed_file(filename, app.config["ALLOWED_EXTENSIONS_IMAGE"]):
+                filename = secure_filename(file.filename).lower()
+
+                file.save(os.path.join(app.config["UPLOAD_FOLDER"], 'img', filename))
+                flash("Image uploaded successfully")
+            
+            else:
+                flash("Invalid file format for media file.")
+            
+
+        workout_post = {
+            "media_file" : request.form.get("media_file"),
+            "workout_category" : request.form.get("workout_category"),
+            "workout_title" : request.form.get("workout_title"),
+            "workout_description" : request.form.get("workout_description"),
+            "rpe_scale" : int(request.form.get("rpe_scale")),
+            "profile_by" : session["user"],
+            "date_posted" : datetime.now()
+
+        }
+        mongo.db.posts.insert_one(workout_post)
+        flash("Post Successfully Added")
+        return redirect(url_for("profile", username=session["user"]))
     workouts = mongo.db.workout.find()
     return render_template("add_workout.html", workouts=workouts)
 
