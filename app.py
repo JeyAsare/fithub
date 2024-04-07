@@ -123,8 +123,8 @@ def logout():
     return redirect(url_for("login"))
 
 # Add workout rout
-@app.route("/add_workout", methods=["GET", "POST"])
-def add_workout():
+@app.route("/add_post", methods=["GET", "POST"])
+def add_post():
     if request.method == "POST":
 
         workout_post = {
@@ -139,8 +139,18 @@ def add_workout():
         mongo.db.posts.insert_one(workout_post)
         flash("Post Successfully Added")
         return redirect(url_for("profile", username=session["user"]))
+
     workouts = mongo.db.workout.find()
-    return render_template("add_workout.html", workouts=workouts)
+    return render_template("add_post.html", workouts=workouts)
+
+
+@app.route("/edit_post/<post_id>" , methods=["GET", "POST"])
+def edit_post(post_id):
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+
+    workouts = mongo.db.workout.find()
+    return render_template("edit_post.html", workouts=workouts, post=post)
+
 
 
 # Profile route

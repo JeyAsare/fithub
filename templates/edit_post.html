@@ -1,17 +1,10 @@
 {% extends "base.html"%}
 {% block content %}
 
-    <h3 class="center-align orange-text darken-2">Add Workout</h3>
+    <h3 class="center-align orange-text darken-2">Edit Post</h3>
 
     <div class="row card-panel blue darken-2">
-        <form class="col s12" method="POST" action="{{ url_for('add_workout') }}" enctype="multipart/form-data">
-            <!-- upload media-->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-upload orange-text text-darken-2 prefix"></i>
-                    <input type="file" name="file">
-                </div>
-            </div>
+        <form class="col s12" method="POST" action="{{ url_for('edit_post', post_id=post._id) }}">
             <!--workout category-->
             <div class="row">
                 <div class="input-field col s12">
@@ -65,7 +58,7 @@
             <div class="row">
                 <div class="col s12 center-align">
                     <button type="submit" class="btn-large blue darken-2">
-                        Post <i class="fa-solid fa-circle-check right"></i> 
+                        Edit Post <i class="fa-solid fa-circle-check right"></i> 
                     </button>
                 </div>
             </div>

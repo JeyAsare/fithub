@@ -100,3 +100,6 @@ body{
     margin-right:40px;
 }
 
+.card-action{
+    z-index: 99;
+}
