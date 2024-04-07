@@ -133,7 +133,7 @@ def add_post():
             "workout_description" : request.form.get("workout_description"),
             "rpe_scale" : request.form.get("rpe_scale"),
             "profile_by" : session["user"],
-            "date_posted" : datetime.now()
+            "date_posted" : datetime.now().strftime("%d %B, %Y")
 
         }
         mongo.db.posts.insert_one(workout_post)
@@ -167,6 +167,14 @@ def edit_post(post_id):
     current_rpe_scale = request.form.get("rpe_scale")
     workouts = mongo.db.workouts.find()
     return render_template("edit_post.html", workouts=workouts, current_rpe_scale=current_rpe_scale, post=post)
+
+
+@app.route("/delete_post/<post_id>")
+def delete_post(post_id):
+    mongo.db.posts.delete_one({"_id": ObjectId(post_id)})
+    flash("Post Successfully Removed")
+    return redirect(url_for("profile", username=session["user"]))
+
 
 
 
