@@ -49,9 +49,13 @@
         <!--view profile modal-->
         <div id="view_profile" class="modal">
           <div class="modal-content center-align">
-            <h4>{{ post.profile_by }}'s Profile</h4>
+            <h4>{{ session['user'] }}'s Profile</h4>
             <h4>DOB</h4>
             <h4>Fun Fact</h4>
+          </div>
+          <div class="modal-footer">
+            <a href="{{ url_for('edit_profile', username=username)}}" class="modal-close waves-effect orange text-darken-2 btn">Edit Profile</a>
+            <a href="#!" class="modal-close waves-effect dark-blue darken-1 btn">Delete Profile</a>
           </div>
         </div>
         <!-- delete post modal -->

@@ -196,6 +196,12 @@ def community():
 
     return render_template("community.html", posts=posts)
 
+
+@app.route("/edit_profile<username>", methods=["GET", "POST"])
+def edit_profile(username):
+
+    return render_template("edit_profile.html", username=username)
+
 # Run the app if executed directly
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
