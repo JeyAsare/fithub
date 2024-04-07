@@ -25,19 +25,9 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 # Set secret key for session management
 app.secret_key = os.environ.get("SECRET_KEY")
 
-# Configure Media 
-app.config["UPLOAD_FOLDER"] = "uploads/"
-app.config["ALLOWED_EXTENSIONS_IMAGE"] = ['.jpg', 'jpeg', '.png', 'gif']
-app.config["ALLOWED_EXTENSIONS_VIDEO"] = ['mp4', 'mov', 'avi', 'mkv'] 
-
 
 # Initialize PyMongo
 mongo = PyMongo(app)
-
-
-def allowed_file(filename, allowed_extensions):
-    return '.' in filename and filename.rsplit(
-        '.', 1)[1] in allowed_extensions
 
 
 # Home route
@@ -124,21 +114,6 @@ def login():
     return render_template("login.html")
 
 
-# Profile route
-@app.route("/profile/<username>", methods=["GET","POST"])
-def profile(username):
-    # grab the sessions user's username from the database
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    posts = list(mongo.db.posts.find())
-
-    # defensive programming
-    if session["user"]:
-        return render_template("profile.html", username=username, posts=posts)
-    
-    return redirect(url_for('login'))
-
-
 # Logout route
 @app.route("/logout")
 def logout():
@@ -152,28 +127,7 @@ def logout():
 def add_workout():
     if request.method == "POST":
 
-        if "file" in request.files:
-
-            file = request.files['file']
-
-            if file:
-                if allowed_file(file.filename, app.config["ALLOWED_EXTENSIONS_VIDEO"]):
-                    filename = secure_filename(file.filename).lower()
-                    file.save(os.path.join(app.config["UPLOAD_FOLDER"], 'videos', filename))
-                    flash("Video uploaded successfully")
-            
-            elif allowed_file(filename, app.config["ALLOWED_EXTENSIONS_IMAGE"]):
-                filename = secure_filename(file.filename).lower()
-
-                file.save(os.path.join(app.config["UPLOAD_FOLDER"], 'img', filename))
-                flash("Image uploaded successfully")
-            
-            else:
-                flash("Invalid file format for media file.")
-            
-
         workout_post = {
-            "media_file" : request.form.get("media_file"),
             "workout_category" : request.form.get("workout_category"),
             "workout_title" : request.form.get("workout_title"),
             "workout_description" : request.form.get("workout_description"),
@@ -187,6 +141,21 @@ def add_workout():
         return redirect(url_for("profile", username=session["user"]))
     workouts = mongo.db.workout.find()
     return render_template("add_workout.html", workouts=workouts)
+
+
+# Profile route
+@app.route("/profile/<username>", methods=["GET","POST"])
+def profile(username):
+    # grab the sessions user's username from the database
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    posts = list(mongo.db.posts.find())
+
+    # defensive programming
+    if session["user"]:
+        return render_template("profile.html", username=username, posts=posts)
+    
+    return redirect(url_for('login'))
 
 
 # Run the app if executed directly

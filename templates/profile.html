@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- user's username tag-->
-<div class="row">
+<div class="row profile-btns-tags">
     <div class="col s12 m4 center-align">
       <button type="submit" class="btn light-blue darken-1 view-profile">View Profile</button>
     </div>
@@ -22,17 +22,19 @@
     <div class="col s12 m6 l4">
       <div class="card post-content">
         <div class="card-image">
-          <img src="{{ post.media_file }}">
+          <img src="/static/images/arm-workout.png">
           <span class="card-title">{{ post.workout_category.upper() }}</span>
         </div>
         <div class="card-content">
           <p>Created By: {{ post.profile_by }}</p>
+          <p>{{ post.workout_title }}</p>
+          <p>RPE Rating: {{ post.rpe_scale }}</p>
         </div>
         <ul class="collapsible">
           <li>
-            <div class="collapsible-header"><i class="fa-solid fa-ellipsis-vertical"></i>{{ post.workout_title }}<br>
-            RPE: {{ post.rpe_scale }}</div>
-            <div class="collapsible-body"><span>{{ post.workout_description }}</span><br><br>
+            <div class="collapsible-header"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+            <div class="collapsible-body"><span>{{ post.workout_description }}</span><br>
+              <span>Date Posted: {{ post.date_posted.strftime('%d %B, %Y') }}</span>
           </li>
         </ul>
       </div>
