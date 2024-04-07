@@ -140,16 +140,16 @@ def add_post():
         flash("Post Successfully Added")
         return redirect(url_for("profile", username=session["user"]))
 
-    workouts = mongo.db.workout.find()
+    workouts = mongo.db.workouts.find()
     return render_template("add_post.html", workouts=workouts)
 
 
 @app.route("/edit_post/<post_id>" , methods=["GET", "POST"])
 def edit_post(post_id):
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-
-    workouts = mongo.db.workout.find()
-    return render_template("edit_post.html", workouts=workouts, post=post)
+    current_rpe_scale = request.form.get("rpe_scale")
+    workouts = mongo.db.workouts.find()
+    return render_template("edit_post.html", workouts=workouts, current_rpe_scale=current_rpe_scale, post=post)
 
 
 
