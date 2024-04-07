@@ -131,7 +131,7 @@ def add_post():
             "workout_category" : request.form.get("workout_category"),
             "workout_title" : request.form.get("workout_title"),
             "workout_description" : request.form.get("workout_description"),
-            "rpe_scale" : int(request.form.get("rpe_scale")),
+            "rpe_scale" : request.form.get("rpe_scale"),
             "profile_by" : session["user"],
             "date_posted" : datetime.now()
 
@@ -146,6 +146,23 @@ def add_post():
 
 @app.route("/edit_post/<post_id>" , methods=["GET", "POST"])
 def edit_post(post_id):
+    if request.method == "POST":
+
+        edited_workout = {
+            "workout_category" : request.form.get("workout_category"),
+            "workout_title" : request.form.get("workout_title"),
+            "workout_description" : request.form.get("workout_description"),
+            "rpe_scale" : request.form.get("rpe_scale"),
+            "profile_by" : session["user"],
+            "date_posted" : datetime.now().strftime("%d %B, %Y")
+
+        }
+    
+        mongo.db.posts.update_one(
+            {"_id": ObjectId(post_id)}, {"$set": edited_workout})
+        flash("Post Successfully Updated")
+        return redirect(url_for("profile", username=session["user"]))
+
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     current_rpe_scale = request.form.get("rpe_scale")
     workouts = mongo.db.workouts.find()
