@@ -176,8 +176,6 @@ def delete_post(post_id):
     return redirect(url_for("profile", username=session["user"]))
 
 
-
-
 # Profile route
 @app.route("/profile/<username>", methods=["GET","POST"])
 def profile(username):
@@ -192,6 +190,11 @@ def profile(username):
     
     return redirect(url_for('login'))
 
+@app.route("/community")
+def community():
+    posts = mongo.db.posts.find()
+
+    return render_template("community.html", posts=posts)
 
 # Run the app if executed directly
 if __name__ == "__main__":

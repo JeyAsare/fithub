@@ -19,51 +19,53 @@
   </div>
   <div class="row">
     {% for post in posts %}
-    <div class="col s12 m6 l4">
-      <div class="card">
-        <!-- edit and delete functions -->
-        <div class="col s12 center-align card-action">
-          <a href="{{ url_for('edit_post', post_id=post._id) }}" class="btn light-blue">Edit</a>
-          <a data-target="delete_post_modal" class="modal-trigger btn orange darken-1">Delete</a>
+      {% if session['user'] == post.profile_by %}
+        <div class="col s12 m6 l4">
+          <div class="card">
+            <!-- edit and delete functions -->
+            <div class="col s12 center-align card-action">
+              <a href="{{ url_for('edit_post', post_id=post._id) }}" class="btn light-blue">Edit</a>
+              <a data-target="delete_post_modal" class="modal-trigger btn orange darken-1">Delete</a>
+            </div>
+            <!-- post layout -->
+            <div class="card-image">
+              <img src="/static/images/arm-workout.png">
+              <span class="card-title">{{ post.workout_category.upper() }}</span>
+            </div>
+            <div class="card-content">
+              <p>Created By: {{ post.profile_by }}</p>
+              <p>{{ post.workout_title }}</p>
+              <p>RPE Rating: {{ post.rpe_scale }}</p>
+            </div>
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+                <div class="collapsible-body"><span>{{ post.workout_description }}</span><br>
+                  <span>Date Posted: {{ post.date_posted }}</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <!-- post layout -->
-        <div class="card-image">
-          <img src="/static/images/arm-workout.png">
-          <span class="card-title">{{ post.workout_category.upper() }}</span>
+        <!--view profile modal-->
+        <div id="view_profile" class="modal">
+          <div class="modal-content center-align">
+            <h4>{{ post.profile_by }}'s Profile</h4>
+            <h4>DOB</h4>
+            <h4>Fun Fact</h4>
+          </div>
         </div>
-        <div class="card-content">
-          <p>Created By: {{ post.profile_by }}</p>
-          <p>{{ post.workout_title }}</p>
-          <p>RPE Rating: {{ post.rpe_scale }}</p>
+        <!-- delete post modal -->
+        <div id="delete_post_modal" class="modal">
+          <div class="modal-content center-align">
+            <h4>Are you sure you want to delete post?</h4>
+            <p>Changes as such are permanent</p>
+          </div>
+          <div class="modal-footer">
+            <a href="{{ url_for('delete_post', post_id=post._id) }}" class="modal-close waves-effect orange text-darken-2 btn">Delete</a>
+            <a href="#!" class="modal-close waves-effect dark-blue darken-1 btn">Cancel</a>
+          </div>
         </div>
-        <ul class="collapsible">
-          <li>
-            <div class="collapsible-header"><i class="fa-solid fa-ellipsis-vertical"></i></div>
-            <div class="collapsible-body"><span>{{ post.workout_description }}</span><br>
-              <span>Date Posted: {{ post.date_posted }}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!--view profile modal-->
-    <div id="view_profile" class="modal">
-      <div class="modal-content center-align">
-        <h4>{{ post.profile_by }}'s Profile</h4>
-        <h4>DOB</h4>
-        <h4>Fun Fact</h4>
-      </div>
-    </div>
-    <!-- delete post modal -->
-    <div id="delete_post_modal" class="modal">
-      <div class="modal-content center-align">
-        <h4>Are you sure you want to delete post?</h4>
-        <p>Changes as such are permanent</p>
-      </div>
-      <div class="modal-footer">
-        <a href="{{ url_for('delete_post', post_id=post._id) }}" class="modal-close waves-effect orange text-darken-2 btn">Delete</a>
-        <a href="#!" class="modal-close waves-effect dark-blue darken-1 btn">Cancel</a>
-      </div>
-    </div>
+      {% endif%}
     {% endfor %}
   </div>
 
