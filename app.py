@@ -37,6 +37,14 @@ def home():
     
     return render_template("home.html")
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+
+    query = request.form.get("query")
+    posts = list(mongo.db.posts.find({"$text": {"$search": query}}))
+    return render_template("community.html", posts=posts)
+
+
 
 # Registration route
 @app.route("/register", methods=["GET", "POST"])
@@ -128,15 +136,28 @@ def logout():
 def add_post():
     if request.method == "POST":
 
+        workout_category = request.form.get("workout_category")
+        workout_title = request.form.get("workout_title")
+        workout_description = request.form.get("workout_description")
+        rpe_scale = request.form.get("rpe_scale")
+        profile_by = session["user"]
+        date_posted = datetime.now().strftime("%d %B, %Y")
+
+        # Fetch the workout image corresponding to the selected category
+        workout_image = mongo.db.workouts.find_one(
+            {'workout_category': workout_category})['workout_image']
+
         workout_post = {
-            "workout_category" : request.form.get("workout_category"),
-            "workout_title" : request.form.get("workout_title"),
-            "workout_description" : request.form.get("workout_description"),
-            "rpe_scale" : request.form.get("rpe_scale"),
-            "profile_by" : session["user"],
-            "date_posted" : datetime.now().strftime("%d %B, %Y")
+            "workout_category" : workout_category,
+            "workout_title" : workout_title,
+            "workout_description" : workout_description,
+            "rpe_scale" : rpe_scale,
+            "profile_by" : profile_by,
+            "date_posted" : date_posted,
+            "workout_image" : workout_image
 
         }
+
         mongo.db.posts.insert_one(workout_post)
         flash("Post Successfully Added")
         return redirect(url_for("profile", username=session["user"]))
@@ -158,6 +179,11 @@ def edit_post(post_id):
             "date_posted" : datetime.now().strftime("%d %B, %Y")
 
         }
+
+        workout_image = mongo.db.workouts.find_one(
+            {'workout_category': edited_workout["workout_category"]})['workout_image']
+
+        edited_workout['workout_image'] = workout_image
     
         mongo.db.posts.update_one(
             {"_id": ObjectId(post_id)}, {"$set": edited_workout})
@@ -186,6 +212,14 @@ def profile(username):
         {"username": session["user"]})
     posts = list(mongo.db.posts.find())
 
+    for post in posts:
+        workout_category = post['workout_category']
+        workout_image = mongo.db.workouts.find_one({"workout_category" : workout_category})["workout_image"]
+        post['workout_image'] = workout_image
+    
+        print("Post:", post)
+        print("Workout Image:", workout_image)
+
     # defensive programming
     if session["user"]:
         return render_template("profile.html", username=username, user=user, posts=posts)
@@ -194,8 +228,13 @@ def profile(username):
 
 @app.route("/community")
 def community():
-    posts = mongo.db.posts.find()
 
+    posts = list(mongo.db.posts.find())
+    for post in posts:
+        workout_category = post['workout_category']
+        workout_image = mongo.db.workouts.find_one({"workout_category" : workout_category})["workout_image"]
+        post['workout_image'] = workout_image
+    
     return render_template("community.html", posts=posts)
 
 

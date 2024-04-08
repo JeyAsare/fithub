@@ -29,7 +29,8 @@
             </div>
             <!-- post layout -->
             <div class="card-image">
-              <img src="/static/images/arm-workout.png">
+
+              <img src="{{ url_for('static' , filename = 'images/' + post.workout_image) }}">
               <span class="card-title">{{ post.workout_category.upper() }}</span>
             </div>
             <div class="card-content">
