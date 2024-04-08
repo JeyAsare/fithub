@@ -8,7 +8,7 @@
     <div class="col s12 m4 center-align">
       <div class="card light-blue darken-1">
         <div class="card-content orange-text text-darken-2">
-          <span class="card-title center-align">{{ username.capitalize() }}'s Profile</span>
+          <span class="card-title center-align">{{ user.username.capitalize() }}'s Profile</span>
         </div>
       </div>
     </div>
@@ -49,13 +49,13 @@
         <!--view profile modal-->
         <div id="view_profile" class="modal">
           <div class="modal-content center-align">
-            <h4>{{ session['user'] }}'s Profile</h4>
-            <h4>DOB</h4>
-            <h4>Fun Fact</h4>
+            <h4>{{ session['user'].capitalize() }}'s Profile</h4>
+            <h4>{{ user.email_address}}</h4>
+            <h4>{{ user.dob }}</h4>
+            <h4>{{ user.profile_bio }}</h4>
           </div>
           <div class="modal-footer">
-            <a href="{{ url_for('edit_profile', username=username)}}" class="modal-close waves-effect orange text-darken-2 btn">Edit Profile</a>
-            <a href="#!" class="modal-close waves-effect dark-blue darken-1 btn">Delete Profile</a>
+            <a href="{{ url_for('edit_profile', username=session['user'])}}" class="modal-close waves-effect orange text-darken-2 btn">Edit Profile</a>
           </div>
         </div>
         <!-- delete post modal -->

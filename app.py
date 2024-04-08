@@ -167,7 +167,8 @@ def edit_post(post_id):
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
     current_rpe_scale = request.form.get("rpe_scale")
     workouts = mongo.db.workouts.find()
-    return render_template("edit_post.html", workouts=workouts, current_rpe_scale=current_rpe_scale, post=post)
+    return render_template("edit_post.html", workouts=workouts, 
+    current_rpe_scale=current_rpe_scale, post=post)
 
 
 @app.route("/delete_post/<post_id>")
@@ -181,13 +182,13 @@ def delete_post(post_id):
 @app.route("/profile/<username>", methods=["GET","POST"])
 def profile(username):
     # grab the sessions user's username from the database
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+    user = mongo.db.users.find_one(
+        {"username": session["user"]})
     posts = list(mongo.db.posts.find())
 
     # defensive programming
     if session["user"]:
-        return render_template("profile.html", username=username, posts=posts)
+        return render_template("profile.html", username=username, user=user, posts=posts)
     
     return redirect(url_for('login'))
 
@@ -200,9 +201,31 @@ def community():
 
 @app.route("/edit_profile<username>", methods=["GET", "POST"])
 def edit_profile(username):
+
+    if request.method == "POST":
+
+        edit_profile = {
+            "email_address" : request.form.get("email_address"),
+            "dob" : request.form.get("dob"),
+            "profile_bio" : request.form.get("profile_bio")
+        }
+
+        mongo.db.users.update_one(
+            {"username": session['user']}, {"$set": edit_profile })
     
-    user = mongo.db.users.find_one({"username": session["user"]})
+    user = mongo.db.users.find_one({
+        "username": session["user"]})
     return render_template("edit_profile.html", username=username, user=user)
+
+@app.route("/delete_profile/<user_id>")
+def delete_profile(user_id):
+    
+    mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+    flash("Profile has been deleted")
+    session.pop('user')
+    return redirect(url_for("home"))
+
+
 
 # Run the app if executed directly
 if __name__ == "__main__":
