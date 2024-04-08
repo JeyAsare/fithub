@@ -12,9 +12,11 @@ body{
     flex: 1 0 auto;
   }
 
+/*
 .register {
     margin-bottom: 5px;
 }
+*/
 
 .text-shadow{
     text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
@@ -96,14 +98,13 @@ body{
 
 .make-post, .view-profile{
     margin-top: 28px;
+    border-radius: 40px;
+    border: inset;
 }
 
-.make-post{
-    margin-left: 40px;
-}
-
-.view-profile{
-    margin-right:40px;
+.make-post > a:hover {
+    font-weight: 600;
+    padding: 10px
 }
 
 .card-action{
@@ -136,4 +137,67 @@ h2{
     padding-bottom: 15px;
 }
 
+.profile-name{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: bold; 
 
+}
+
+.card-shape{
+    border-radius: 40px;
+}
+
+.post-cards{
+    background-color: rgba(68, 108, 118, 0.516);
+    border-style: ridge;
+}
+
+.card-content > p{
+    font-family: "ABeeZee", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.collapsible-body > p{
+    font-family: "ABeeZee", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.modal-content > h4{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    color: aliceblue;
+}
+
+.modal-content > p {
+    font-family: "ABeeZee", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    color: aliceblue;
+}
+
+.modal-body, .modal-footer{
+    background-image: linear-gradient(to right, rgba(14, 148, 226, 0.751),rgb(219, 199, 199));
+}
+
+.edit-card{
+    background-image: linear-gradient(to bottom, rgb(246, 139, 8),rgba(226, 199, 161, 0.51));
+}
+
+.edit-content > h5{
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.edit-content > p{
+    font-family: "ABeeZee", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+}
