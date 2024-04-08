@@ -37,6 +37,8 @@ def home():
     
     return render_template("home.html")
 
+
+# Search route
 @app.route("/search", methods=["GET", "POST"])
 def search():
 
@@ -131,11 +133,11 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
-# Add workout rout
+# Add workout route
 @app.route("/add_post", methods=["GET", "POST"])
 def add_post():
     if request.method == "POST":
-
+        # retrieve data from the form
         workout_category = request.form.get("workout_category")
         workout_title = request.form.get("workout_title")
         workout_description = request.form.get("workout_description")
@@ -146,7 +148,7 @@ def add_post():
         # Fetch the workout image corresponding to the selected category
         workout_image = mongo.db.workouts.find_one(
             {'workout_category': workout_category})['workout_image']
-
+        # Create a new workout post
         workout_post = {
             "workout_category" : workout_category,
             "workout_title" : workout_title,
@@ -165,11 +167,11 @@ def add_post():
     workouts = mongo.db.workouts.find()
     return render_template("add_post.html", workouts=workouts)
 
-
+# Edit workout route
 @app.route("/edit_post/<post_id>" , methods=["GET", "POST"])
 def edit_post(post_id):
     if request.method == "POST":
-
+        # Retrieve updated data from the form
         edited_workout = {
             "workout_category" : request.form.get("workout_category"),
             "workout_title" : request.form.get("workout_title"),
@@ -179,12 +181,12 @@ def edit_post(post_id):
             "date_posted" : datetime.now().strftime("%d %B, %Y")
 
         }
-
+        # Fetch the workout image corresponding to the updated categroy
         workout_image = mongo.db.workouts.find_one(
             {'workout_category': edited_workout["workout_category"]})['workout_image']
 
         edited_workout['workout_image'] = workout_image
-    
+        # Update the workout post
         mongo.db.posts.update_one(
             {"_id": ObjectId(post_id)}, {"$set": edited_workout})
         flash("Post Successfully Updated")
@@ -196,7 +198,7 @@ def edit_post(post_id):
     return render_template("edit_post.html", workouts=workouts, 
     current_rpe_scale=current_rpe_scale, post=post)
 
-
+# Delete workout route
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
     mongo.db.posts.delete_one({"_id": ObjectId(post_id)})
@@ -211,14 +213,11 @@ def profile(username):
     user = mongo.db.users.find_one(
         {"username": session["user"]})
     posts = list(mongo.db.posts.find())
-
+    # Update posts with workout images
     for post in posts:
         workout_category = post['workout_category']
         workout_image = mongo.db.workouts.find_one({"workout_category" : workout_category})["workout_image"]
         post['workout_image'] = workout_image
-    
-        print("Post:", post)
-        print("Workout Image:", workout_image)
 
     # defensive programming
     if session["user"]:
@@ -226,6 +225,7 @@ def profile(username):
     
     return redirect(url_for('login'))
 
+# Community route
 @app.route("/community")
 def community():
 
@@ -238,24 +238,27 @@ def community():
     return render_template("community.html", posts=posts)
 
 
+# Edit route
 @app.route("/edit_profile<username>", methods=["GET", "POST"])
 def edit_profile(username):
 
     if request.method == "POST":
-
+        # Retrieve updated profile information from the form
         edit_profile = {
             "email_address" : request.form.get("email_address"),
             "dob" : request.form.get("dob"),
             "profile_bio" : request.form.get("profile_bio")
         }
-
+        # Update the user's profile information in the database
         mongo.db.users.update_one(
             {"username": session['user']}, {"$set": edit_profile })
-    
+            
     user = mongo.db.users.find_one({
         "username": session["user"]})
     return render_template("edit_profile.html", username=username, user=user)
 
+
+# Delete route
 @app.route("/delete_profile/<user_id>")
 def delete_profile(user_id):
     
