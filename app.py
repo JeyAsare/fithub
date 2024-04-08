@@ -72,6 +72,7 @@ def register():
         register = {
             "username" : request.form.get("username").lower(),
             "email_address" : request.form.get("email_address"),
+            "dob": request.form.get("dob"),
             "password" : generate_password_hash(request.form.get("password")),
             "profile_bio" : request.form.get("profile_bio")
         }
@@ -199,8 +200,9 @@ def community():
 
 @app.route("/edit_profile<username>", methods=["GET", "POST"])
 def edit_profile(username):
-
-    return render_template("edit_profile.html", username=username)
+    
+    user = mongo.db.users.find_one({"username": session["user"]})
+    return render_template("edit_profile.html", username=username, user=user)
 
 # Run the app if executed directly
 if __name__ == "__main__":

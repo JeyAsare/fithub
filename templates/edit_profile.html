@@ -13,12 +13,62 @@
         <div class="col s8 offset-s2 center-align">
             <div class="card-action orange darken-1">
                 <div class="card-content blue-text text-darken-2 center-align">
-                    <h5>username</h5>
-                    <h5>dob</h5>
-                    <h5>email-address</h5>
-                    <h5>short-bio</h5>
+                    <h5>Username: {{ user.username }}</h5>
+                    <h5>Email Address: {{ user.email_address }}</h5>
+                    <h5>DOB: {{ user.dob }}</h5>
+                    <h5>Bio {{user.profile_bio }}</h5>
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Update Profile Details -->
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_profile', username=session['user']) }}">
+            <div class="card-panel light-blue accent-3">
+                <!-- Username -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-user prefix orange-text text-darken-2"></i>
+                        <input id="username" name="username" 
+                        type="text" class="validate" pattern="^[a-zA-Z0-9]{5,15}$"
+                        minlength="5" maxlength="15" value="{{ user.username }}" required>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <!-- Email Address -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-envelope prefix orange-text text-darken-2"></i>
+                        <input id="email_address" name="email_address"
+                        type="email" class="validate" value="{{ user.email_address }}"required>
+                        <label for="email_address">Email Address</label>
+                    </div>
+                </div>
+                <!-- DOB -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-regular fa-calendar-days orange-text text-darken-2 prefix"></i>
+                        <input id="dob" name="dob" type="text" value="{{ user.dob }}" class="datepicker">
+                    </div>
+                </div>
+                <!-- Profile Bio-->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fa-solid fa-message orange-text text-darken-2 prefix"></i>
+                        <textarea name="profile_bio" id="profile_bio" minlength="5" maxlength="500"
+                        class="materialize-textarea validate" placeholder="Tell us about yourself" required>
+                        {{- user.profile_bio -}}</textarea>
+                    </div>
+                </div>
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large blue darken-2">
+                            Edit Profile <i class="fa-solid fa-circle-check right"></i> 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 {% endblock%}
