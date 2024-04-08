@@ -1,7 +1,7 @@
 {% extends "base.html"%}
 {% block content %}
 
-    <h3 class="center-align orange-text darken-2">Edit Post</h3>
+    <h2 class="center-align orange-text darken-2 text-shadow">Edit Post</h2>
 
     <div class="row card-panel blue darken-2">
         <form class="col s12" method="POST" action="{{ url_for('edit_post', post_id=post._id) }}">

@@ -3,12 +3,14 @@
 <!-- user's username tag-->
 <div class="row profile-btns-tags">
     <div class="col s12 m4 center-align">
-      <button data-target="view_profile" class="btn light-blue darken-1 view-profile modal-trigger">View Profile</button>
+      <button data-target="view_profile" class="btn light-blue darken-1 view-profile modal-trigger">
+        View Profile</button>
     </div>
     <div class="col s12 m4 center-align">
       <div class="card light-blue darken-1">
-        <div class="card-content orange-text text-darken-2">
-          <span class="card-title center-align">{{ user.username.capitalize() }}'s Profile</span>
+        <div class="card-content">
+          <span class="card-title orange-text text-darken-2 center-align profile-name">
+            {{ user.username.capitalize() }}'s Profile</span>
         </div>
       </div>
     </div>
