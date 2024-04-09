@@ -60,6 +60,8 @@
                     <button type="submit" class="btn-large blue darken-2">
                         Post <i class="fa-solid fa-circle-check right"></i> 
                     </button>
+                    <a href="{{ url_for('profile', username=session['user'])}}" 
+                    class="teal lighten-1 btn-large">Cancel<i class="fa-solid fa-backward right"></i></a>
                 </div>
             </div>
         </form>

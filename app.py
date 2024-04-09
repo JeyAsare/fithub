@@ -268,6 +268,13 @@ def delete_profile(user_id):
     return redirect(url_for("home"))
 
 
+# Route for 404 page
+@app.errorhandler(404)
+def page_not_found(error):
+
+    return render_template("404.html"), 404
+
+
 
 # Run the app if executed directly
 if __name__ == "__main__":

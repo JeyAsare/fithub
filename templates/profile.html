@@ -66,10 +66,10 @@
           </div>
         </div>
         <!-- delete post modal -->
-        <div id="delete_post_modal" class="modal">
+        <div id="delete_post_modal" class="modal modal-body">
           <div class="modal-content center-align">
             <h4>Are you sure you want to delete post?</h4>
-            <p>Changes as such are permanent</p>
+            <p>These changes cannot be reversed</p>
           </div>
           <div class="modal-footer">
             <a href="{{ url_for('delete_post', post_id=post._id) }}" class="modal-close waves-effect orange text-darken-2 btn">Delete</a>
