@@ -15,7 +15,7 @@
                             <option value="{{ workout.workout_category }}">{{ workout.workout_category }}</option>
                         {% endfor %}
                     </select>
-                    <label for="workout_category">Select a Workout</label>
+                    <label for="workout_category" class="white-text">Select a Workout</label>
                 </div>
             </div>
             <!-- workout title-->
@@ -23,7 +23,7 @@
                 <div class="input-field col s12">
                     <i class="fa-solid fa-dumbbell white-text text-shadow  prefix"></i>
                     <input id="workout_title" name="workout_title" minlength="5" maxlength="45"
-                    type="text" class="validate" placeholder="What title are you giving your workout?" required>
+                    type="text" class="validate white-text" placeholder="What title are you giving your workout?" required>
                 </div>
             </div>
             <!-- workout description-->
@@ -51,13 +51,13 @@
                         <option value="9">9</option>
                         <option value="10">10</option>
                     </select>
-                    <label for="rpe_scale">RPE Chart</label>
+                    <label for="rpe_scale" class="white-text">RPE Chart</label>
                 </div>
             </div>
             <!-- submit button-->
             <div class="row">
                 <div class="col s12 center-align">
-                    <button type="submit" class="btn-large green accent-2">
+                    <button type="submit" class="btn-large purple darken-3">
                         Post <i class="fa-solid fa-circle-check right"></i> 
                     </button>
                     <a href="{{ url_for('profile', username=session['user'])}}" 

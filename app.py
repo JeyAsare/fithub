@@ -75,7 +75,7 @@ def register():
         
         # check if user passwords match
         if request.form.get("password") != request.form.get("confirm_password"):
-            flash("Passwords do not match")
+            flash("Passwords do not Match")
             return redirect(url_for("register"))
 
         # create a new user
@@ -129,74 +129,89 @@ def login():
 @app.route("/logout")
 def logout():
     # remove user from session cookies
-    flash("You have been logged out")
+    flash("See You Soon")
     session.pop("user")
     return redirect(url_for("login"))
+
 
 # Add workout route
 @app.route("/add_post", methods=["GET", "POST"])
 def add_post():
-    if request.method == "POST":
-        # retrieve data from the form
-        workout_category = request.form.get("workout_category")
-        workout_title = request.form.get("workout_title")
-        workout_description = request.form.get("workout_description")
-        rpe_scale = request.form.get("rpe_scale")
-        profile_by = session["user"]
-        date_posted = datetime.now().strftime("%d %B, %Y")
+    logged_in_username = session.get('user')
+    if logged_in_username:
+        if request.method == "POST":
+            # retrieve data from the form
+            workout_category = request.form.get("workout_category")
+            workout_title = request.form.get("workout_title")
+            workout_description = request.form.get("workout_description")
+            rpe_scale = request.form.get("rpe_scale")
+            profile_by = session["user"]
+            date_posted = datetime.now().strftime("%d %B, %Y")
+            like_count = 0
 
-        # Fetch the workout image corresponding to the selected category
-        workout_image = mongo.db.workouts.find_one(
-            {'workout_category': workout_category})['workout_image']
-        # Create a new workout post
-        workout_post = {
-            "workout_category" : workout_category,
-            "workout_title" : workout_title,
-            "workout_description" : workout_description,
-            "rpe_scale" : rpe_scale,
-            "profile_by" : profile_by,
-            "date_posted" : date_posted,
-            "workout_image" : workout_image
+            # Fetch the workout image corresponding to the selected category
+            workout_image = mongo.db.workouts.find_one(
+                {'workout_category': workout_category})['workout_image']
+            # Create a new workout post
+            workout_post = {
+                "workout_category" : workout_category,
+                "workout_title" : workout_title,
+                "workout_description" : workout_description,
+                "rpe_scale" : rpe_scale,
+                "profile_by" : profile_by,
+                "date_posted" : date_posted,
+                "workout_image" : workout_image,
+                "like_count" : like_count
 
-        }
+            }
 
-        mongo.db.posts.insert_one(workout_post)
-        flash("Post Successfully Added")
-        return redirect(url_for("profile", username=session["user"]))
+            mongo.db.posts.insert_one(workout_post)
+            flash("Post Successfully Added")
+            return redirect(url_for("profile", username=session["user"]))
 
-    workouts = mongo.db.workouts.find()
-    return render_template("add_post.html", workouts=workouts)
+        workouts = mongo.db.workouts.find()
+        return render_template("add_post.html", workouts=workouts)
+    else:
+        flash("Please Log In")
+        return redirect(url_for('login'))
+
 
 # Edit workout route
 @app.route("/edit_post/<post_id>" , methods=["GET", "POST"])
 def edit_post(post_id):
-    if request.method == "POST":
+    logged_in_username = session.get('user')
+    if logged_in_username:
+        if request.method == "POST":
         # Retrieve updated data from the form
-        edited_workout = {
+            edited_workout = {
             "workout_category" : request.form.get("workout_category"),
             "workout_title" : request.form.get("workout_title"),
             "workout_description" : request.form.get("workout_description"),
-            "rpe_scale" : request.form.get("rpe_scale"),
-            "profile_by" : session["user"],
-            "date_posted" : datetime.now().strftime("%d %B, %Y")
+            "rpe_scale" : request.form.get("rpe_scale"),                "profile_by" : session["user"],
+            "date_posted" : datetime.now().strftime("%d %B, %Y"),
+            "like_count" : 0
+            }
+             # Fetch the workout image corresponding to the updated categroy
+            workout_image = mongo.db.workouts.find_one(
+                    {'workout_category': edited_workout["workout_category"]})['workout_image']
 
-        }
-        # Fetch the workout image corresponding to the updated categroy
-        workout_image = mongo.db.workouts.find_one(
-            {'workout_category': edited_workout["workout_category"]})['workout_image']
-
-        edited_workout['workout_image'] = workout_image
-        # Update the workout post
-        mongo.db.posts.update_one(
+            edited_workout['workout_image'] = workout_image
+            # Update the workout post
+            mongo.db.posts.update_one(
             {"_id": ObjectId(post_id)}, {"$set": edited_workout})
-        flash("Post Successfully Updated")
-        return redirect(url_for("profile", username=session["user"]))
+            flash("Post Successfully Updated")
+            return redirect(url_for("profile", username=session["user"]))
 
-    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    current_rpe_scale = request.form.get("rpe_scale")
-    workouts = mongo.db.workouts.find()
-    return render_template("edit_post.html", workouts=workouts, 
-    current_rpe_scale=current_rpe_scale, post=post)
+        post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+        current_rpe_scale = request.form.get("rpe_scale")
+        workouts = mongo.db.workouts.find()
+        return render_template("edit_post.html", workouts=workouts, 
+        current_rpe_scale=current_rpe_scale, post=post)
+    else:
+        flash("Please Log In")
+        return redirect(url_for('login'))
+            
+
 
 # Delete workout route
 @app.route("/delete_post/<post_id>")
@@ -209,49 +224,68 @@ def delete_post(post_id):
 # Profile route
 @app.route("/profile/<username>", methods=["GET","POST"])
 def profile(username):
-    # grab the sessions user's username from the database
-    user = mongo.db.users.find_one(
-        {"username": session["user"]})
-    posts = list(mongo.db.posts.find())
-    # Update posts with workout images
-    for post in posts:
-        workout_category = post['workout_category']
-        workout_image = mongo.db.workouts.find_one({"workout_category" : workout_category})["workout_image"]
-        post['workout_image'] = workout_image
+    if 'user' in session:
 
-    # defensive programming
-    if session["user"]:
-        return render_template("profile.html", username=username, user=user, posts=posts)
-    
-    return redirect(url_for('login'))
+    # grab the sessions user's username from the database
+            user = mongo.db.users.find_one(
+                {"username": session["user"]})
+            posts = list(mongo.db.posts.find())
+            # Update posts with workout images
+            for post in posts:
+                workout_category = post['workout_category']
+                workout_image = mongo.db.workouts.find_one(
+                    {"workout_category" : workout_category})["workout_image"]
+                post['workout_image'] = workout_image
+
+            return render_template(
+                "profile.html", username=username, user=user, posts=posts)
+    else:
+        flash("Please log in to view this page")
+        return redirect(url_for('login'))
 
 # Community route
 @app.route("/community")
 def community():
+    logged_in_username = session.get('user')
+    if logged_in_username:
+        posts = list(mongo.db.posts.find())
+        for post in posts:
+            workout_category = post['workout_category']
+            workout_image = mongo.db.workouts.find_one({"workout_category" : workout_category})["workout_image"]
+            post['workout_image'] = workout_image
+        
+        return render_template("community.html", posts=posts)
+    else:
+        flash("Please Log In")
+        return redirect(url_for('login'))
 
-    posts = list(mongo.db.posts.find())
-    for post in posts:
-        workout_category = post['workout_category']
-        workout_image = mongo.db.workouts.find_one({"workout_category" : workout_category})["workout_image"]
-        post['workout_image'] = workout_image
-    
-    return render_template("community.html", posts=posts)
 
-
-# Edit route
+# Edit Profile route
 @app.route("/edit_profile<username>", methods=["GET", "POST"])
 def edit_profile(username):
+    logged_in_username = session.get('user')
 
-    if request.method == "POST":
-        # Retrieve updated profile information from the form
-        edit_profile = {
-            "email_address" : request.form.get("email_address"),
-            "dob" : request.form.get("dob"),
-            "profile_bio" : request.form.get("profile_bio")
-        }
-        # Update the user's profile information in the database
-        mongo.db.users.update_one(
-            {"username": session['user']}, {"$set": edit_profile })
+    if logged_in_username:
+        if logged_in_username == username:
+            if request.method == "POST":
+                # Retrieve updated profile information from the form
+                edit_profile = {
+                    "email_address" : request.form.get("email_address"),
+                    "dob" : request.form.get("dob"),
+                    "profile_bio" : request.form.get("profile_bio")
+                }
+                # Update the user's profile information in the database
+                mongo.db.users.update_one(
+                    {"username": session['user']}, {"$set": edit_profile })
+                
+                flash("Profile details have been updated")
+                return redirect(url_for("profile", username=username))
+        else:
+            flash("You are not permitted to edit this account")
+            return redirect(url_for('profile', username=username))
+    else:
+        flash("Please Log In")
+        return redirect(url_for('login'))
             
     user = mongo.db.users.find_one({
         "username": session["user"]})
@@ -298,10 +332,6 @@ def like_post(_id):
 
     return redirect(url_for('community'))
         
-        
-
-
-
 # Route for 404 page
 @app.errorhandler(404)
 def page_not_found(error):

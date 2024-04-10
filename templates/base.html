@@ -40,8 +40,8 @@
             </div>
           </nav>
         <!-- side bar-->
-          <ul class="sidenav" id="mobile-demo">
-            <li><h4 class="side-nav-title center-align">Fithub</h4></li>
+          <ul class="sidenav purple darken-3 side-nav-links" id="mobile-demo">
+            <li><h4 class="side-nav-title center-align text-shadow">Fithub</h4></li>
             <li><a href="{{ url_for('home') }}">Home</a></li>
             {% if session.user %}
               <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>

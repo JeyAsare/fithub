@@ -10,7 +10,7 @@
                 <div class="input-field col s12">
                     <i class="fa-solid fa-list white-text text-shadow prefix"></i>
                     <select id="workout_category" name="workout_category" class="validate" required>
-                        <option value="" disabled>Choose your option</option>
+                        <option class="white-text" value="" disabled>Choose your option</option>
                         {% for workout in workouts %}
                             {% if workout.workout_category == post.workout_category %}
                                 <option value="{{ workout.workout_category }}" selected>{{ workout.workout_category }}</option>
@@ -19,7 +19,7 @@
                             {% endif%}
                         {% endfor %}
                     </select>
-                    <label for="workout_category">Select a Workout</label>
+                    <label for="workout_category" class="white-text">Select a Workout</label>
                 </div>
             </div>
             <!-- workout title-->
@@ -54,13 +54,13 @@
                         {% endif %}
                     {% endfor %}
                 </select>
-                    <label for="rpe_scale">RPE Chart</label>
+                    <label for="rpe_scale" class="white-text">RPE Chart</label>
                 </div>
             </div>
             <!-- submit button-->
             <div class="row">
                 <div class="col s12 center-align">
-                    <button type="submit" class="btn-large green accent-2">
+                    <button type="submit" class="btn-large purple darken-3">
                         Edit Post <i class="fa-solid fa-circle-check right"></i> 
                     </button>
                     <a href="{{ url_for('profile', username=session['user'])}}" 
