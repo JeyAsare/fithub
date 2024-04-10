@@ -2,15 +2,15 @@
 
 {% block content %}
 
-    <h3 class="center-align orange-text darken-2 text-shadow">LOG IN</h3>
+    <h3 class="center-align white-text text-shadow">LOG IN</h3>
 
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
-            <div class="card-panel light-blue accent-3">
+            <div class="card-panel cyan">
                 <!-- Username -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fa-solid fa-user prefix orange-text text-darken-2"></i>
+                        <i class="fa-solid fa-user prefix white-text text-shadow"></i>
                         <input id="username" name="username" 
                         type="text" class="validate" pattern="^[a-zA-Z0-9]{5,15}$"
                         minlength="5" maxlength="15" required>
@@ -20,7 +20,7 @@
                 <!-- Password -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fa-solid fa-lock prefix orange-text text-darken-2"></i>
+                        <i class="fa-solid fa-lock prefix white-text text-shadow"></i>
                         <input id="password" name="password" 
                         type="password" class="validate" pattern="^[a-zA-Z0-9]{7,18}$"
                         minlength="7" maxlength="18" required>
@@ -30,7 +30,7 @@
                 <!-- submit button-->
                 <div class="row">
                     <button type="submit" 
-                    class="col s12 btn-large light-blue accent-4">log In
+                    class="col s12 btn-large purple darken-3">log In
                     </button>
                 </div>
             </div>
@@ -40,7 +40,7 @@
         <div class="col s12">
             <p class="center-align">
                 Don't have an account with us yet? 
-                <a href="{{url_for('register')}}" class="orange-text darken-2">Create new account</a>
+                <a href="{{url_for('register')}}" class="white-text">Create new account</a>
             </p>
         </div>
     </div>

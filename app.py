@@ -267,6 +267,40 @@ def delete_profile(user_id):
     session.pop('user')
     return redirect(url_for("home"))
 
+@app.route("/like_post/<_id>", methods=["GET", "POST"])
+def like_post(_id):
+    _id = _id
+    liked_post = mongo.db.users.find_one({
+        "username": session["user"]}).get("liked_post", [])
+
+    if _id in liked_post:
+        # If a User unlikes
+        mongo.db.users.update_one({
+            "username": session["user"]}, {"$pull": {"liked_post": _id}})
+        mongo.db.posts.update_one({
+            "_id": ObjectId(_id)}, {"$inc": {"like_count": -1}})
+    else:
+        # If a user likes
+        mongo.db.users.update_one(
+            {"username": session["user"]}, {"$push": {"liked_post": _id}})
+        mongo.db.posts.update_one(
+            {"_id": ObjectId(_id)}, {"$inc": {"like_count": 1}})
+
+
+    like_count = mongo.db.posts.find_one(
+        {"_id": ObjectId(_id)})["like_count"]
+        
+    if like_count == 0:
+        mongo.db.posts.update_one(
+            {"_id": ObjectId(_id)}, {"$unset": {"like_count" : ""}})
+
+    session["liked_post"] = liked_post
+
+    return redirect(url_for('community'))
+        
+        
+
+
 
 # Route for 404 page
 @app.errorhandler(404)

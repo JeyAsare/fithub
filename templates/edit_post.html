@@ -1,14 +1,14 @@
 {% extends "base.html"%}
 {% block content %}
 
-    <h2 class="center-align orange-text darken-2 text-shadow">Edit Post</h2>
+    <h2 class="center-align white-text text-shadow">Edit Post</h2>
 
-    <div class="row card-panel blue darken-2">
+    <div class="row card-panel cyan">
         <form class="col s12" method="POST" action="{{ url_for('edit_post', post_id=post._id) }}">
             <!--workout category-->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fa-solid fa-list orange-text text-darken-2 prefix"></i>
+                    <i class="fa-solid fa-list white-text text-shadow prefix"></i>
                     <select id="workout_category" name="workout_category" class="validate" required>
                         <option value="" disabled>Choose your option</option>
                         {% for workout in workouts %}
@@ -25,7 +25,7 @@
             <!-- workout title-->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fa-solid fa-dumbbell orange-text text-darken-2 prefix"></i>
+                    <i class="fa-solid fa-dumbbell white-text text-shadow prefix"></i>
                     <input id="workout_title" name="workout_title" minlength="3" maxlength="45"
                     type="text" class="validate" placeholder="What title are you giving your workout?"
                     value="{{ post.workout_title }}" required>
@@ -34,7 +34,7 @@
             <!-- workout description-->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fa-solid fa-message orange-text text-darken-2 prefix"></i>
+                    <i class="fa-solid fa-message white-text text-shadow prefix"></i>
                     <textarea name="workout_description" id="workout_description" minlength="5" maxlength="500"
                     class="materialize-textarea validate" placeholder="Let us all know how you did :D" required>
                     {{- post.workout_description -}}</textarea>
@@ -43,7 +43,7 @@
             <!-- RPE chart slect-->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fa-solid fa-heart-pulse prefix orange-text text-darken-2"></i>
+                    <i class="fa-solid fa-heart-pulse prefix white-text text-shadow"></i>
                     <select id="rpe_scale" name="rpe_scale" class="validate" required>
                         <option value="{{ post.rpe_scale }}"  selected>{{ post.rpe_scale }}</option>
                         {% for i in range(1, 11) %}
@@ -60,11 +60,11 @@
             <!-- submit button-->
             <div class="row">
                 <div class="col s12 center-align">
-                    <button type="submit" class="btn-large blue darken-2">
+                    <button type="submit" class="btn-large green accent-2">
                         Edit Post <i class="fa-solid fa-circle-check right"></i> 
                     </button>
                     <a href="{{ url_for('profile', username=session['user'])}}" 
-                    class="teal lighten-1 btn-large">Cancel<i class="fa-solid fa-backward right"></i></a>
+                    class="grey lighten-1 btn-large">Cancel<i class="fa-solid fa-backward right"></i></a>
                 </div>
             </div>
         </form>

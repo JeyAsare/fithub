@@ -2,8 +2,8 @@
 {% block content %}
     <div class="row">
         <div class="col s6 offset-s3 center-align">
-            <div class="card light-blue darken-1">
-              <div class="card-content white-text text-darken-2">
+            <div class="card purple darken-3 card-shape">
+              <div class="card-content white-text">
                 <span class="card-title center-align text-shadow">{{ user.username.capitalize() }}'s Profile</span>
               </div>
             </div>
@@ -11,8 +11,8 @@
     </div>
     <div class="row">
         <div class="col s8 offset-s2 center-align">
-            <div class="card-action edit-card">
-                <div class="card-content blue-text text-darken-1 center-align edit-content">
+            <div class="card-action purple darken-3 edit-info">
+                <div class="card-content white-text center-align edit-content">
                     <h5>Username: {{ user.username }}</h5>
                     <h5>Email Address: {{ user.email_address }}</h5>
                     <h5>DOB: {{ user.dob }}</h5>
@@ -24,11 +24,11 @@
     <!-- Update Profile Details -->
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_profile', username=session['user']) }}">
-            <div class="card-panel light-blue accent-3">
+            <div class="card-panel cyan">
                 <!-- Username -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fa-solid fa-user prefix orange-text text-darken-2"></i>
+                        <i class="fa-solid fa-user prefix white-text text-shadow"></i>
                         <input id="username" name="username" 
                         type="text" value="{{ user.username }}" disabled>
                         <label for="username">Username</label>
@@ -37,7 +37,7 @@
                 <!-- Email Address -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fa-solid fa-envelope prefix orange-text text-darken-2"></i>
+                        <i class="fa-solid fa-envelope prefix white-text text-shadow"></i>
                         <input id="email_address" name="email_address"
                         type="email" class="validate" value="{{ user.email_address }}"required>
                         <label for="email_address">Email Address</label>
@@ -46,14 +46,14 @@
                 <!-- DOB -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fa-regular fa-calendar-days orange-text text-darken-2 prefix"></i>
+                        <i class="fa-regular fa-calendar-days white-text text-shadow prefix"></i>
                         <input id="dob" name="dob" type="text" value="{{ user.dob }}" class="datepicker">
                     </div>
                 </div>
                 <!-- Profile Bio-->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fa-solid fa-message orange-text text-darken-2 prefix"></i>
+                        <i class="fa-solid fa-message white-text text-shadow prefix"></i>
                         <textarea name="profile_bio" id="profile_bio" minlength="5" maxlength="500"
                         class="materialize-textarea validate" placeholder="Tell us about yourself" required>
                         {{- user.profile_bio -}}</textarea>
@@ -62,17 +62,17 @@
                 <!-- submit button -->
                 <div class="row">
                     <div class="col s12 m6 center-align">
-                        <button type="submit" class="btn blue darken-2">
+                        <button type="submit" class="btn green accent-2">
                             Edit Profile <i class="fa-solid fa-circle-check right"></i> 
                         </button>
                     </div>
                     <div class="col s12 m6 center-align">
-                        <a data-target="delete_profile" class="modal-trigger orange darken-2 btn">Delete Profile <i class="fa-solid fa-trash right"></i></a>
+                        <a data-target="delete_profile" class="modal-trigger purple darken-3 btn">Delete Profile <i class="fa-solid fa-trash right"></i></a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 center-align">
-                        <a href="{{ url_for('profile', username=session['user'])}}" class="teal lighten-1 btn">Back<i class="fa-solid fa-backward right"></i></a>
+                        <a href="{{ url_for('profile', username=session['user'])}}" class="grey lighten-1 btn">Back<i class="fa-solid fa-backward right"></i></a>
                     </div>
                 </div>
                 <div id="delete_profile" class="modal modal-body">
@@ -81,8 +81,8 @@
                       <p>These changes cannot be reversed</p>
                     </div>
                     <div class="modal-footer">
-                      <a href="{{ url_for('delete_profile', user_id=user._id) }}" class="modal-close waves-effect orange text-darken-2 btn">Delete Profile</a>
-                      <a href="#!" class="modal-close waves-effect teal lighten-1 btn">Cancel</a>
+                      <a href="{{ url_for('delete_profile', user_id=user._id) }}" class="modal-close waves-effect purple darken-3 btn">Delete Profile<i class="fa-solid fa-trash right"></i></a>
+                      <a href="#!" class="modal-close waves-effect grey lighten-1 btn">Cancel<i class="fa-solid fa-x right"></i></a>
                     </div>
                   </div>
             </div>
