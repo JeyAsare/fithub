@@ -30,23 +30,23 @@ This site has been designed to be very user friendly and intuitive through the e
 
 | Feature Title | Value | Screenshot |
 | :---: | :---: | :---: | 
-| Brand Logo | This gives us brand recognition but also is used to take users to the homepage. | <img src="documentation/features/Fithub-Logo.png"> |
+| Brand Logo | This gives us brand recognition but also is used to take users to the homepage. | <img src="documentation/features/Logo.png"> |
 | Navigation Bar | This allows navigation for the Fithub site. | <img src="documentation/features/Navigation-Bar.png"> |
 | Footer | Contains social media links for the site. | <img src="documentation/features/Footer.png"> |
-| Edit Post Button | This allows members to edit their posts. | <img src="documentation/features/Edit-Delete-Post.png"> |
-| Delete Post Button | This allows members to delete their posts. | <img src="documentation/features/Edit-Delete-Post.png"> |
-| View Profile Button | This allows members to view their own profile. | <img src="documentation/features/Viewl-Profile-Button.png"> |
-| Make New Post Button | This allows members to make a new post on Fithub. | <img src="documentation/features/New-Post-Button.png"> |
-| Edit Profile Button | This allows members to edit information about the profile. | <img src="documentation/features/Edit-Profile-Modal.png"> |
-| Delete Profile Button | This allows members to delete their profile. | <img src="documentation/features/Profile-Buttons.png"> |
-| Cancel/Back Buttons | This allows users to back out of unwanted pages. | <img src="documentation/features/Profile-Buttons.png"> |
+| Edit Post Button | This allows members to edit their posts. | <img src="documentation/features/Edit-Post-Page2.png"> |
+| Delete Post Button | This allows members to delete their posts. | <img src="documentation/features/Delete-Button.png"> |
+| View Profile Button | This allows members to view their own profile. | <img src="documentation/features/View-Profile-Button.png"> |
+| Make New Post Button | This allows members to make a new post on Fithub. | <img src="documentation/features/Make-A-Post.png"> |
+| Edit Profile Button | This allows members to edit information about the profile. | <img src="documentation/features/Edit-Buttons.png"> |
+| Delete Profile Button | This allows members to delete their profile. | <img src="documentation/features/Delete-Profile.png"> |
+| Cancel/Back Buttons | This allows users to back out of unwanted pages. | <img src="documentation/features/Edit-Buttons.png"> |
 | Search Bar | This allows members to query workout categories and workout descriptions | <img src="documentation/features/Search-Bar.png"> |
 | Post Cards | This holds the workout posts made by users and can be viewed on the profile and community page. | <img src="documentation/features/Post-Cards.png"> |
-| Submit Form Button Title | This button posts forms to the database. | Screenshot |
-| Log In Form  | This form allows members to sign in again to view the site. | <img src="documentation/features/Log-In-Form.png"> |
-| Register Form | This form is for new users to register and view the site. | <img src="documentation/features/Register-Form.png"> |
-| Add Post Form | This form allows users to create new workout posts. | <img src="documentation/features/Add-Post-Form.png"> |
-| Edit Post Form | This form allows users to edit already posted workouts. | <img src="documentation/features/Edit-Post-Form.png"> |
+| Submit Form Button Title | This button posts forms to the database. | <img src="documentation/features/Submit-Form.png"> |
+| Log In Form  | This form allows members to sign in again to view the site. | <img src="documentation/features/Log-In.png"> |
+| Register Form | This form is for new users to register and view the site. | <img src="documentation/features/Register.png"> |
+| Add Post Form | This form allows users to create new workout posts. | <img src="documentation/features/Add-Workout.png"> |
+| Edit Post Form | This form allows users to edit already posted workouts. | <img src="documentation/features/Edit-Post-Page2.png"> |
 | Flash Messages | This will flash up to notify users when they have submitted a form on the FitHub site. | <img src="documentation/features/Flash-Message.png"> |
 | Log Out | This function logs users out of the site. | <img src="documentation/features/Log-Out.png"> |
 

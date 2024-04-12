@@ -60,8 +60,9 @@
                 <p>These changes cannot be reversed</p>
               </div>
               <div class="modal-footer">
-                <a href="{{ url_for('delete_post', post_id=post._id) }}" class="modal-close waves-effect orange text-darken-2 btn">Delete</a>
-                <a href="#!" class="modal-close waves-effect dark-blue darken-1 btn">Cancel</a>
+                <a href="{{ url_for('delete_post', post_id=post._id) }}"
+                 class="modal-close waves-effect purple darken-3 btn">Delete</a>
+                <a href="#!" class="modal-close waves-effect grey lighten-1 btn">Cancel</a>
               </div>
             </div>
       {% endif %}
@@ -76,7 +77,8 @@
         <p>{{ user.profile_bio }}</p>
       </div>
       <div class="modal-footer">
-          <a href="{{ url_for('edit_profile', username=session['user'])}}" class="modal-close waves-effect teal accent-3 btn">Edit Profile</a>
+          <a href="{{ url_for('edit_profile', username=session['user'])}}"
+           class="modal-close waves-effect teal accent-3 btn">Edit Profile</a>
       </div>
     </div>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

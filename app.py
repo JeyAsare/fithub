@@ -1,18 +1,16 @@
 import os
 from flask import (
-    Flask, flash, render_template, 
+    Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId 
+from bson.objectid import ObjectId
 from datetime import datetime
 from werkzeug.security import (
     generate_password_hash, check_password_hash)
 from werkzeug.utils import secure_filename
 # Check if the file env.py exists
 if os.path.exists("env.py"):
-    import env 
-
-
+    import env
 
 
 # Create an instance of Flask
@@ -34,7 +32,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
-    
+
     return render_template("home.html")
 
 
@@ -47,32 +45,28 @@ def search():
     return render_template("community.html", posts=posts)
 
 
-
 # Registration route
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        
+
         # check if username is already in the database
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        
         # if username already exists in database
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
-        
         # normalize the email address before querying the database
         normalized_email = request.form.get("email_address").lower().strip()
         # check if email address is already in the database
         existing_email = mongo.db.users.find_one(
             {"email_address": normalized_email})
-        
+
         # if email address already exists in the database
         if existing_email:
             flash("Email Address already exists")
             return redirect(url_for("register"))
-        
         # check if user passwords match
         if request.form.get("password") != request.form.get("confirm_password"):
             flash("Passwords do not Match")
@@ -80,11 +74,11 @@ def register():
 
         # create a new user
         register = {
-            "username" : request.form.get("username").lower(),
-            "email_address" : request.form.get("email_address"),
+            "username": request.form.get("username").lower(),
+            "email_address": request.form.get("email_address"),
             "dob": request.form.get("dob"),
-            "password" : generate_password_hash(request.form.get("password")),
-            "profile_bio" : request.form.get("profile_bio")
+            "password": generate_password_hash(request.form.get("password")),
+            "profile_bio": request.form.get("profile_bio")
         }
 
         mongo.db.users.insert_one(register)
@@ -102,21 +96,19 @@ def login():
         # check if username exists in the database
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        
-    
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".format(request.form.get("username")))
-                    return redirect(url_for(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for(
                         "profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Username or Password is incorrect")
                 return redirect(url_for("login"))
-            
+
         else:
             # if there is not an existing user in the database
             flash("Username or Password is incorrect")
@@ -154,14 +146,14 @@ def add_post():
                 {'workout_category': workout_category})['workout_image']
             # Create a new workout post
             workout_post = {
-                "workout_category" : workout_category,
-                "workout_title" : workout_title,
-                "workout_description" : workout_description,
-                "rpe_scale" : rpe_scale,
-                "profile_by" : profile_by,
-                "date_posted" : date_posted,
-                "workout_image" : workout_image,
-                "like_count" : like_count
+                "workout_category": workout_category,
+                "workout_title": workout_title,
+                "workout_description": workout_description,
+                "rpe_scale": rpe_scale,
+                "profile_by": profile_by,
+                "date_posted": date_posted,
+                "workout_image": workout_image,
+                "like_count": like_count
 
             }
 
@@ -177,40 +169,42 @@ def add_post():
 
 
 # Edit workout route
-@app.route("/edit_post/<post_id>" , methods=["GET", "POST"])
+@app.route("/edit_post/<post_id>", methods=["GET", "POST"])
 def edit_post(post_id):
     logged_in_username = session.get('user')
     if logged_in_username:
         if request.method == "POST":
-        # Retrieve updated data from the form
+            # Retrieve updated data from the form
             edited_workout = {
-            "workout_category" : request.form.get("workout_category"),
-            "workout_title" : request.form.get("workout_title"),
-            "workout_description" : request.form.get("workout_description"),
-            "rpe_scale" : request.form.get("rpe_scale"),                "profile_by" : session["user"],
-            "date_posted" : datetime.now().strftime("%d %B, %Y"),
-            "like_count" : 0
+                "workout_category": request.form.get("workout_category"),
+                "workout_title": request.form.get("workout_title"),
+                "workout_description": request.form.get("workout_description"),
+                "rpe_scale": request.form.get("rpe_scale"),
+                "profile_by": session["user"],
+                "date_posted": datetime.now().strftime("%d %B, %Y"),
+                "like_count": 0
             }
-             # Fetch the workout image corresponding to the updated categroy
+            # Fetch the workout image corresponding to the updated categroy
             workout_image = mongo.db.workouts.find_one(
-                    {'workout_category': edited_workout["workout_category"]})['workout_image']
+                    {'workout_category':
+                        edited_workout["workout_category"]})['workout_image']
 
             edited_workout['workout_image'] = workout_image
             # Update the workout post
             mongo.db.posts.update_one(
-            {"_id": ObjectId(post_id)}, {"$set": edited_workout})
+                {"_id": ObjectId(post_id)}, {"$set": edited_workout})
             flash("Post Successfully Updated")
             return redirect(url_for("profile", username=session["user"]))
 
         post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
         current_rpe_scale = request.form.get("rpe_scale")
         workouts = mongo.db.workouts.find()
-        return render_template("edit_post.html", workouts=workouts, 
-        current_rpe_scale=current_rpe_scale, post=post)
+        return render_template(
+            "edit_post.html", workouts=workouts,
+            current_rpe_scale=current_rpe_scale, post=post)
     else:
         flash("Please Log In")
         return redirect(url_for('login'))
-            
 
 
 # Delete workout route
@@ -222,26 +216,27 @@ def delete_post(post_id):
 
 
 # Profile route
-@app.route("/profile/<username>", methods=["GET","POST"])
+@app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     if 'user' in session:
 
-    # grab the sessions user's username from the database
-            user = mongo.db.users.find_one(
+        # grab the sessions user's username from the database
+        user = mongo.db.users.find_one(
                 {"username": session["user"]})
-            posts = list(mongo.db.posts.find())
-            # Update posts with workout images
-            for post in posts:
-                workout_category = post['workout_category']
-                workout_image = mongo.db.workouts.find_one(
-                    {"workout_category" : workout_category})["workout_image"]
-                post['workout_image'] = workout_image
+        posts = list(mongo.db.posts.find())
+        # Update posts with workout images
+        for post in posts:
+            workout_category = post['workout_category']
+            workout_image = mongo.db.workouts.find_one(
+                    {"workout_category": workout_category})["workout_image"]
+            post['workout_image'] = workout_image
 
             return render_template(
                 "profile.html", username=username, user=user, posts=posts)
     else:
         flash("Please log in to view this page")
         return redirect(url_for('login'))
+
 
 # Community route
 @app.route("/community")
@@ -251,13 +246,19 @@ def community():
         posts = list(mongo.db.posts.find())
         for post in posts:
             workout_category = post['workout_category']
-            workout_image = mongo.db.workouts.find_one({"workout_category" : workout_category})["workout_image"]
+            workout_image = mongo.db.workouts.find_one(
+                {"workout_category": workout_category})["workout_image"]
             post['workout_image'] = workout_image
-        
         return render_template("community.html", posts=posts)
     else:
         flash("Please Log In")
         return redirect(url_for('login'))
+
+# Workout Categories route
+@app.route("/workout_categories")
+def workout_categories():
+    workouts = list(mongo.db.workouts.find())
+    return render_template("workout_categories.html", workouts=workouts)
 
 
 # Edit Profile route
@@ -270,14 +271,13 @@ def edit_profile(username):
             if request.method == "POST":
                 # Retrieve updated profile information from the form
                 edit_profile = {
-                    "email_address" : request.form.get("email_address"),
-                    "dob" : request.form.get("dob"),
-                    "profile_bio" : request.form.get("profile_bio")
+                    "email_address": request.form.get("email_address"),
+                    "dob": request.form.get("dob"),
+                    "profile_bio": request.form.get("profile_bio")
                 }
                 # Update the user's profile information in the database
                 mongo.db.users.update_one(
-                    {"username": session['user']}, {"$set": edit_profile })
-                
+                    {"username": session['user']}, {"$set": edit_profile})
                 flash("Profile details have been updated")
                 return redirect(url_for("profile", username=username))
         else:
@@ -286,7 +286,6 @@ def edit_profile(username):
     else:
         flash("Please Log In")
         return redirect(url_for('login'))
-            
     user = mongo.db.users.find_one({
         "username": session["user"]})
     return render_template("edit_profile.html", username=username, user=user)
@@ -295,12 +294,13 @@ def edit_profile(username):
 # Delete route
 @app.route("/delete_profile/<user_id>")
 def delete_profile(user_id):
-    
     mongo.db.users.delete_one({"_id": ObjectId(user_id)})
     flash("Profile has been deleted")
     session.pop('user')
     return redirect(url_for("home"))
 
+
+# Like Post Route
 @app.route("/like_post/<_id>", methods=["GET", "POST"])
 def like_post(_id):
     _id = _id
@@ -320,18 +320,17 @@ def like_post(_id):
         mongo.db.posts.update_one(
             {"_id": ObjectId(_id)}, {"$inc": {"like_count": 1}})
 
-
     like_count = mongo.db.posts.find_one(
         {"_id": ObjectId(_id)})["like_count"]
-        
     if like_count == 0:
         mongo.db.posts.update_one(
-            {"_id": ObjectId(_id)}, {"$unset": {"like_count" : ""}})
+            {"_id": ObjectId(_id)}, {"$unset": {"like_count": ""}})
 
     session["liked_post"] = liked_post
 
     return redirect(url_for('community'))
-        
+
+
 # Route for 404 page
 @app.errorhandler(404)
 def page_not_found(error):
@@ -339,9 +338,8 @@ def page_not_found(error):
     return render_template("404.html"), 404
 
 
-
 # Run the app if executed directly
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True) 
+            debug=True)
