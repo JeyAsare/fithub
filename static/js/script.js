@@ -2,6 +2,7 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
     $('.collapsible').collapsible();
     $('select').formSelect();
+    $('.tooltipped').tooltip();
     $('.datepicker').datepicker({
       format: "dd mmmm, yyyy",
       yearRange: [1960,2006],

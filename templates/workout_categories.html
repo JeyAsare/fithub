@@ -3,22 +3,37 @@
     <h2 class="center-align white-text text-shadow">WORKOUT CATEGORIES</h2>
 
     <div class="row">
+      {% for workout in workouts %}
         <div class="col s12 m6">
-          <div class="card medium">
+          <div class="card blue-grey lighten-1 post-cards large">
             <div class="card-image">
-              <img src="images/sample-1.jpg">
-              <span class="card-title">Card Title</span>
+              {% if workout.workout_category_image %}
+                <img src="{{ url_for('static' , filename = 'images/' + workout.workout_category_image) }}">
+              {% else %}
+                <img src="{{ url_for('static' , filename ='/images/group-photo.png') }}">
+              {% endif %}
+              <span class="card-title">{{ workout.workout_category.upper() }}</span>
             </div>
             <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
+              <p class="workout-category-text">{{ workout.workout_category_description}}</p>
             </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
+            <div class="card-action center-align">
+              {% if workout.workout_category == "Upper Body"%}
+                <a href="#" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Upper Body Workout">Post Workout</a>
+              {% elif workout.workout_category == "Lower Body" %}
+                <a href="#" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Lower Body Workout">Post Workout</a>
+              {% elif workout.workout_category == "Full Body" %}
+                <a href="#" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Full Body Workout">Post Workout</a>
+              {% elif workout.workout_category == "Cardio" %}
+                <a href="#" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Cardio Workout">Post Workout</a>
+              {% else %}  
+                <a href="#" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Stretch Workout">Post Workout</a>
+              {% endif %}
             </div>
           </div>
         </div>
-      </div>
+      {% endfor %}
+    </div>
 
 
 
