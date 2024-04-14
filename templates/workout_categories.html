@@ -19,15 +19,15 @@
             </div>
             <div class="card-action center-align">
               {% if workout.workout_category == "Upper Body"%}
-                <a href="#" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Upper Body Workout">Post Workout</a>
+                <a href="{{ url_for('add_post') }}" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Upper Body Workout">Post Workout</a>
               {% elif workout.workout_category == "Lower Body" %}
-                <a href="#" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Lower Body Workout">Post Workout</a>
+                <a href="{{ url_for('add_post') }}" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Lower Body Workout">Post Workout</a>
               {% elif workout.workout_category == "Full Body" %}
-                <a href="#" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Full Body Workout">Post Workout</a>
+                <a href="{{ url_for('add_post') }}" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Full Body Workout">Post Workout</a>
               {% elif workout.workout_category == "Cardio" %}
-                <a href="#" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Cardio Workout">Post Workout</a>
+                <a href="{{ url_for('add_post') }}" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Cardio Workout">Post Workout</a>
               {% else %}  
-                <a href="#" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Stretch Workout">Post Workout</a>
+                <a href="{{ url_for('add_post') }}" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Stretch Workout">Post Workout</a>
               {% endif %}
             </div>
           </div>

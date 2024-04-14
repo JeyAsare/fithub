@@ -140,7 +140,10 @@ def add_post():
             profile_by = session["user"]
             date_posted = datetime.now().strftime("%d %B, %Y")
             like_count = 0
-
+            workout_name = request.form.get("workout_name")
+            workout_sets = request.form.get("workout_sets")
+            workout_weight = request.form.get("workout_weight")
+            workout_reps = request.form.get("workout_reps")
             # Fetch the workout image corresponding to the selected category
             workout_image = mongo.db.workouts.find_one(
                 {'workout_category': workout_category})['workout_image']
@@ -153,7 +156,11 @@ def add_post():
                 "profile_by": profile_by,
                 "date_posted": date_posted,
                 "workout_image": workout_image,
-                "like_count": like_count
+                "like_count": like_count,
+                "workout_name": workout_name,
+                "workout_sets": workout_sets,
+                "workout_weight": workout_weight,
+                "workout_reps": workout_reps
 
             }
 
@@ -184,7 +191,7 @@ def edit_post(post_id):
                 "date_posted": datetime.now().strftime("%d %B, %Y"),
                 "like_count": 0
             }
-            # Fetch the workout image corresponding to the updated categroy
+            # Fetch the workout image corresponding to the updated category
             workout_image = mongo.db.workouts.find_one(
                     {'workout_category':
                         edited_workout["workout_category"]})['workout_image']
