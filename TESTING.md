@@ -117,7 +117,7 @@ I used Lighthouse from my dev tools to analyse the efficiency of my site from de
 | As a returning user, I would like to be able to see my posts saved and stored somewhere I can access. | Profile Page | <img src="documentation/features/Profile Page.png"> |
 | As a returning user, I would like to be able to have the ability to change features of my account. | Edit Post Page | <img src="documentation/features/Edit-Post-Page2.png"> |
 | As a returning user, I would like to be able to have the freedom of deleting my account whenever I please and not have my personal data lying around. | Delete Profile Modal | <img src="documentation/features/Delete-Profile.png"> |
-| As a returning user, I would like to be able to have the freedom of deleting my own posts whenever I please. | Delete Post Modal | Screenshot |
+| As a returning user, I would like to be able to have the freedom of deleting my own posts whenever I please. | Delete Post Modal | <img src="documentation/features/Delete Post Modal.png"> |
 
 
 
