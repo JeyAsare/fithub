@@ -8,9 +8,11 @@
           <div class="card blue-grey lighten-1 post-cards large">
             <div class="card-image">
               {% if workout.workout_category_image %}
-                <img src="{{ url_for('static' , filename = 'images/' + workout.workout_category_image) }}">
+                <img src="{{ url_for('static' , filename = 'images/' + workout.workout_category_image) }}" 
+                alt="photo of different categories of fitness">
               {% else %}
-                <img src="{{ url_for('static' , filename ='/images/group-photo.png') }}">
+                <img src="{{ url_for('static' , filename ='/images/group-photo.png')  }}" 
+                alt="group photo of fitness individuals">
               {% endif %}
               <span class="card-title">{{ workout.workout_category.upper() }}</span>
             </div>
@@ -18,16 +20,11 @@
               <p class="workout-category-text">{{ workout.workout_category_description}}</p>
             </div>
             <div class="card-action center-align">
-              {% if workout.workout_category == "Upper Body"%}
-                <a href="{{ url_for('add_post') }}" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Upper Body Workout">Post Workout</a>
-              {% elif workout.workout_category == "Lower Body" %}
-                <a href="{{ url_for('add_post') }}" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Lower Body Workout">Post Workout</a>
-              {% elif workout.workout_category == "Full Body" %}
-                <a href="{{ url_for('add_post') }}" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Full Body Workout">Post Workout</a>
-              {% elif workout.workout_category == "Cardio" %}
-                <a href="{{ url_for('add_post') }}" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Cardio Workout">Post Workout</a>
-              {% else %}  
-                <a href="{{ url_for('add_post') }}" class="btn purple darken-3 tooltipped" data-position="right" data-tooltip="Post Stretch Workout">Post Workout</a>
+              {% if workout.workout_category %}
+                <a href="{{ url_for('add_post') }}" 
+                class="btn purple darken-3 tooltipped" data-position="right" 
+                data-tooltip="Post {{workout.workout_category}} Workout">Post Workout</a>
+              {% else %}
               {% endif %}
             </div>
           </div>

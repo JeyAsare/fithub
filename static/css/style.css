@@ -20,14 +20,12 @@ body{
 
 h2{
     font-family: "Nunito", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
 }
 
 .nav-links {
     font-family: "Nunito", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
 }
@@ -36,7 +34,6 @@ h2{
 
 .brand-logo{
     margin-left: 15px;
-    font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
     font-family: "Nunito", sans-serif;
@@ -55,7 +52,6 @@ i.fa-solid.fa-person-running.right {
 /* -- Side Nav Links -- */
 .side-nav-links > li, ul.sidenav li a{
     font-family: "Nunito", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
     color: white;
@@ -71,7 +67,6 @@ i.fa-solid.fa-person-running.right {
     padding: 8px;
     margin: 0;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.250);
-    font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
     font-family: "Nunito", sans-serif;
@@ -88,18 +83,18 @@ i.fa-solid.fa-person-running.right {
     font-size: medium;
 }
 
+.text-container{
+    display: flex;
+    flex-direction: column;
+
+}
+
 /* -- Homepage Images -- */
 
 .inline-block img{
     width: 100%;
     border-style: groove;
     border-color: black;
-}
-
-.text-container{
-    display: flex;
-    flex-direction: column;
-
 }
 
 .card-panel .row{
@@ -119,9 +114,7 @@ i.fa-solid.fa-person-running.right {
 
 .profile-name{
     font-family: "Nunito", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 900;
-    font-style: bold; 
 }
 
 .make-post, .view-profile{
@@ -130,12 +123,6 @@ i.fa-solid.fa-person-running.right {
     border: inset;
     font-family: "ABeeZee", sans-serif;
     font-weight: 800;
-    font-style: normal;
-}
-
-.make-post > a:hover{
-    font-weight: 900;
-    padding: 10px
 }
 
 .card-shape{
@@ -179,7 +166,6 @@ i.fa-solid.fa-person-running.right {
 
 .edit-content > h5{
     font-family: "Nunito", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
 }
@@ -194,16 +180,11 @@ i.fa-solid.fa-person-running.right {
     padding: 8px;
     border: ridge;
 }
-/*
-.card-panel{
-    background-image: linear-gradient(to bottom, rgba(14, 148, 226, 0.751),rgba(25, 195, 141, 0.794))
-}
-*/
+
 /* -- Modal Pages -- */
 
 .modal-content > h4{
     font-family: "Nunito", sans-serif;
-    font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
     color: aliceblue;

@@ -4,7 +4,8 @@
   <!-- View Profile -->
   <div class="profile-top">
     <div class="col s12 m4">
-      <button data-target="view_profile" class="btn btn-large purple darken-3 view-profile modal-trigger">
+      <button data-target="view_profile" 
+      class="btn btn-large purple darken-3 view-profile modal-trigger">
         View Profile</button>
     </div>
     <!-- user's username tag-->
@@ -32,10 +33,12 @@
         <div class="col s12 m6 l4">
           <div class="card blue-grey lighten-1 post-cards">
             <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{{ url_for('static' , filename = 'images/' + post.workout_image) }}">
+              <img class="activator" 
+              src="{{ url_for('static' , filename = 'images/' + post.workout_image) }}">
             </div>
             <div class="card-content">
-              <span class="card-title activator white-text text-shadow">{{ post.workout_category.upper() }}<i class="fa-solid fa-ellipsis-vertical right"></i></span>
+              <span class="card-title activator white-text text-shadow">
+                {{ post.workout_category.upper() }}<i class="fa-solid fa-ellipsis-vertical right"></i></span>
               <p>Created By: {{ post.profile_by }}</p>
               <p>{{ post.workout_title }}</p>
               <p>RPE Rating: {{ post.rpe_scale }}</p>
@@ -46,13 +49,13 @@
               </div>
             </div>
             <div class="card-reveal blue-grey lighten-1">
-              <span class="card-title white-text">{{ post.workout_category.upper() }}<i class="fa-solid fa-x right white-text"></i></span>
+              <span class="card-title white-text">{{ post.workout_category.upper() }}<i 
+                class="fa-solid fa-x right white-text"></i></span>
               <p>{{ post.workout_description }}</p>
               <p>Date Posted: {{ post.date_posted }}</p>
             </div>
           </div>
         </div>
-          
             <!-- delete post modal -->
             <div id="delete_post_modal" class="modal modal-body">
               <div class="modal-content center-align">
@@ -82,14 +85,4 @@
       </div>
     </div>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script>
-     document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.modal');
-      var instances = M.Modal.init(elems, {});
-    });
-
-    $(document).ready(function(){
-      $('.modal').modal();
-    });
-  </script>
 {% endblock %}

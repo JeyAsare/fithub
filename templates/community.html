@@ -30,28 +30,48 @@
             <img class="activator" src="{{ url_for('static' , filename = 'images/' + post.workout_image) }}">
           </div>
           <div class="card-content">
-            <span class="card-title activator white-text text-shadow">{{ post.workout_category.upper() }}<i class="fa-solid fa-ellipsis-vertical right"></i></span>
+            <span class="card-title activator white-text text-shadow">
+              {{ post.workout_category.upper() }}<i class="fa-solid fa-ellipsis-vertical right"></i></span>
             <p>Created By: {{ post.profile_by }}</p>
             <p>{{ post.workout_title }}</p>
             <p>RPE Rating: {{ post.rpe_scale }}</p>
             <span>
               {% if post._id | string in session["liked_post"]%}
-                <a href="{{ url_for('like_post', _id = post._id) }}"><i class="fa-solid fa-heart white-text text-shadow"></i></a>
+                <a href="{{ url_for('like_post', _id = post._id) }}"><i 
+                  class="fa-solid fa-heart white-text text-shadow"></i></a>
               {% else %}
-                <a href="{{ url_for('like_post', _id = post._id) }}"><i class="fa-regular fa-heart white-text text-shadow"></i></a>
+                <a href="{{ url_for('like_post', _id = post._id) }}"><i 
+                  class="fa-regular fa-heart white-text text-shadow"></i></a>
               {% endif %}
               <span>{{ post.like_count }}</span>
               </span>
-            <div class="center-align">
-              <a href="{{ url_for('edit_post', post_id=post._id) }}" class="btn teal accent-3">Edit</a>
-              <a data-target="delete_post_modal" class="modal-trigger btn purple darken-3">Delete</a>
-            </div>
+            {% if session["user"] == "admin" %}
+              <div class="center-align">
+                <a href="{{ url_for('edit_post', post_id=post._id) }}" 
+                class="btn teal accent-3">Edit</a>
+                <a data-target="delete_post_modal" 
+                class="modal-trigger btn purple darken-3">Delete</a>
+              </div>
+            {% endif %}
           </div>
           <div class="card-reveal blue-grey lighten-1">
-            <span class="card-title white-text">{{ post.workout_category.upper() }}<i class="fa-solid fa-x right white-text"></i></span>
+            <span class="card-title white-text">
+              {{ post.workout_category.upper() }}<i class="fa-solid fa-x right white-text"></i></span>
             <p>{{ post.workout_description }}</p>
             <p>Date Posted: {{ post.date_posted }}</p>
           </div>
+        </div>
+      </div>
+      <!-- Delete Post Modal -->
+      <div id="delete_post_modal" class="modal modal-body">
+        <div class="modal-content center-align">
+          <h4>Are you sure you want to delete post?</h4>
+          <p>These changes cannot be reversed</p>
+        </div>
+        <div class="modal-footer">
+          <a href="{{ url_for('delete_post', post_id=post._id) }}"
+           class="modal-close waves-effect purple darken-3 btn">Delete</a>
+          <a href="#!" class="modal-close waves-effect grey lighten-1 btn">Cancel</a>
         </div>
       </div>
       {% endfor %}

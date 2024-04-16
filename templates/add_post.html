@@ -4,59 +4,43 @@
 <h2 class="center-align white-text text-shadow">Add Post</h2>
 
 <div class="row card-panel cyan">
-    <form class="col s12" method="POST" action="{{ url_for('add_post') }}">
+    <form class="col s12" method="POST" 
+    action="{{ url_for('add_post') }}">
         <!--workout category-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-list white-text text-shadow prefix"></i>
-                <select id="workout_category" name="workout_category" class="validate" required>
+                <select id="workout_category" name="workout_category" 
+                class="validate" required>
                     <option value="" disabled selected>Choose your option</option>
                     {% for workout in workouts %}
-                    <option value="{{ workout.workout_category }}">{{ workout.workout_category }}</option>
+                    <option value="{{ workout.workout_category }}">
+                        {{ workout.workout_category }}</option>
                     {% endfor %}
                 </select>
-                <label for="workout_category" class="white-text">Select a Workout</label>
+                <label for="workout_category" 
+                class="white-text">Select a Workout</label>
             </div>
         </div>
         <!-- workout title-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-heading white-text text-shadow  prefix"></i>
-                <input id="workout_title" name="workout_title" minlength="5" maxlength="45" type="text"
-                class="validate white-text" placeholder="What title are you giving your workout?" required>
-            </div>
-        </div>
-        <!-- workout name -->
-        <div class="row">
-            <div class="input-field col s3 workout-name">
-                <i class="fa-solid fa-dumbbell white-text text-shadow  prefix"></i>
-                <input name="workout_name" minlength="5" maxlength="45" type="text" 
-                class="validate white-text" placeholder="Workout Name" required>
-            </div>
-            <div class="input-field col l3 workout-sets">
-                <input type="number" id="workout_sets" name="workout_sets" placeholder="Sets"
-                clsss="validate white-text" required>
-            </div>
-            <div class="input-field col l3 workout-weight">
-                <input type="number" id="workout_weight" name="workout_weight" placeholder="Weight"
-                clsss="validate white-text" step="5" required>
-            </div>
-            <div class="input-field col l3 workout-reps">
-                <input type="number" id="workout_reps" name="workout_reps" placeholder="Reps"
-                clsss="validate white-text" required>
-            </div>
-            <div class="col s12">
-                <i class="fa-solid fa-plus white-text text-shadow" onclick="addInputs()"></i>
-                <i class="fa-solid fa-minus white-text text-shadow" onclick="removeInputs()"></i>
+                <input id="workout_title" name="workout_title" 
+                minlength="5" maxlength="45" type="text"
+                class="validate white-text" 
+                placeholder="What title are you giving your workout?" required>
             </div>
         </div>
         <!-- workout description-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="fa-solid fa-message white-text text-shadow  prefix"></i>
-                <textarea name="workout_description" id="workout_description" minlength="5" maxlength="500"
-                    class="materialize-textarea validate" placeholder="Let us all know how you did :D"
-                    required></textarea>
+                <textarea name="workout_description" id="workout_description" 
+                minlength="5" maxlength="500"
+                class="materialize-textarea validate" 
+                placeholder="Let us all know how you did :D"
+                required></textarea>
             </div>
         </div>
         <!-- RPE chart slect-->
@@ -85,7 +69,8 @@
                 <button type="submit" class="btn-large purple darken-3">
                     Post <i class="fa-solid fa-circle-check right"></i>
                 </button>
-                <a href="{{ url_for('profile', username=session['user'])}}" class="grey lighten-1 btn-large">Cancel<i
+                <a href="{{ url_for('profile', username=session['user'])}}" 
+                class="grey lighten-1 btn-large">Cancel<i
                         class="fa-solid fa-backward right"></i></a>
             </div>
         </div>

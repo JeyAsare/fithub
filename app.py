@@ -68,7 +68,8 @@ def register():
             flash("Email Address already exists")
             return redirect(url_for("register"))
         # check if user passwords match
-        if request.form.get("password") != request.form.get("confirm_password"):
+        if request.form.get("password") != request.form.get(
+                "confirm_password"):
             flash("Passwords do not Match")
             return redirect(url_for("register"))
 
@@ -140,13 +141,11 @@ def add_post():
             profile_by = session["user"]
             date_posted = datetime.now().strftime("%d %B, %Y")
             like_count = 0
-            workout_name = request.form.get("workout_name")
-            workout_sets = request.form.get("workout_sets")
-            workout_weight = request.form.get("workout_weight")
-            workout_reps = request.form.get("workout_reps")
+
             # Fetch the workout image corresponding to the selected category
             workout_image = mongo.db.workouts.find_one(
                 {'workout_category': workout_category})['workout_image']
+
             # Create a new workout post
             workout_post = {
                 "workout_category": workout_category,
@@ -156,13 +155,7 @@ def add_post():
                 "profile_by": profile_by,
                 "date_posted": date_posted,
                 "workout_image": workout_image,
-                "like_count": like_count,
-                "workout_name": workout_name,
-                "workout_sets": workout_sets,
-                "workout_weight": workout_weight,
-                "workout_reps": workout_reps
-
-            }
+                "like_count": like_count}
 
             mongo.db.posts.insert_one(workout_post)
             flash("Post Successfully Added")
@@ -178,8 +171,8 @@ def add_post():
 # Edit workout route
 @app.route("/edit_post/<post_id>", methods=["GET", "POST"])
 def edit_post(post_id):
-    logged_in_username = session.get('user')
-    if logged_in_username:
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    if session['user'] == post['profile_by']:
         if request.method == "POST":
             # Retrieve updated data from the form
             edited_workout = {
@@ -203,23 +196,38 @@ def edit_post(post_id):
             flash("Post Successfully Updated")
             return redirect(url_for("profile", username=session["user"]))
 
-        post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
         current_rpe_scale = request.form.get("rpe_scale")
         workouts = mongo.db.workouts.find()
         return render_template(
             "edit_post.html", workouts=workouts,
             current_rpe_scale=current_rpe_scale, post=post)
     else:
-        flash("Please Log In")
-        return redirect(url_for('login'))
+        flash("You are not the owner of the post")
+        return redirect(url_for('community'))
 
 
 # Delete workout route
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
-    mongo.db.posts.delete_one({"_id": ObjectId(post_id)})
-    flash("Post Successfully Removed")
-    return redirect(url_for("profile", username=session["user"]))
+
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+
+    if not session.get("user"):
+        flash("You are not logged in.")
+        return redirect(url_for("login"))
+    if session.get("user") != post[
+            "profile_by"] and session.get("user") != "admin":
+        flash("You are not allowed to delete this post.")
+        return redirect(url_for("community"))
+
+    if session.get("user") != "admin":
+        mongo.db.posts.delete_one({"_id": ObjectId(post_id)})
+        flash("Post Successfully Removed")
+        return redirect(url_for("profile", username=session["user"]))
+    else:
+        mongo.db.posts.delete_one({"_id": ObjectId(post_id)})
+        flash("Post Successfully Removed")
+        return redirect(url_for("community"))
 
 
 # Profile route
@@ -248,8 +256,7 @@ def profile(username):
 # Community route
 @app.route("/community")
 def community():
-    logged_in_username = session.get('user')
-    if logged_in_username:
+    if session.get('user'):
         posts = list(mongo.db.posts.find())
         for post in posts:
             workout_category = post['workout_category']
@@ -261,9 +268,11 @@ def community():
         flash("Please Log In")
         return redirect(url_for('login'))
 
+
 # Workout Categories route
 @app.route("/workout_categories")
 def workout_categories():
+
     workouts = list(mongo.db.workouts.find())
     return render_template("workout_categories.html", workouts=workouts)
 
@@ -271,10 +280,9 @@ def workout_categories():
 # Edit Profile route
 @app.route("/edit_profile<username>", methods=["GET", "POST"])
 def edit_profile(username):
-    logged_in_username = session.get('user')
 
-    if logged_in_username:
-        if logged_in_username == username:
+    if session.get('user'):
+        if session.get('user') == username:
             if request.method == "POST":
                 # Retrieve updated profile information from the form
                 edit_profile = {
@@ -298,9 +306,13 @@ def edit_profile(username):
     return render_template("edit_profile.html", username=username, user=user)
 
 
-# Delete route
+# Delete Profile Route
 @app.route("/delete_profile/<user_id>")
 def delete_profile(user_id):
+    if not session.get("user"):
+        flash("You are not logged in")
+        return redirect(url_for('login'))
+
     mongo.db.users.delete_one({"_id": ObjectId(user_id)})
     flash("Profile has been deleted")
     session.pop('user')
@@ -350,3 +362,4 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
+            

@@ -13,13 +13,16 @@
                         <option class="white-text" value="" disabled>Choose your option</option>
                         {% for workout in workouts %}
                             {% if workout.workout_category == post.workout_category %}
-                                <option value="{{ workout.workout_category }}" selected>{{ workout.workout_category }}</option>
+                                <option value="{{ workout.workout_category }}" 
+                                selected>{{ workout.workout_category }}</option>
                             {% else %}
-                                <option value="{{ workout.workout_category }}">{{ workout.workout_category }}</option>
+                                <option value="{{ workout.workout_category }}">
+                                    {{ workout.workout_category }}</option>
                             {% endif%}
                         {% endfor %}
                     </select>
-                    <label for="workout_category" class="white-text">Select a Workout</label>
+                    <label for="workout_category" class="white-text">
+                        Select a Workout</label>
                 </div>
             </div>
             <!-- workout title-->
@@ -27,7 +30,8 @@
                 <div class="input-field col s12">
                     <i class="fa-solid fa-dumbbell white-text text-shadow prefix"></i>
                     <input id="workout_title" name="workout_title" minlength="3" maxlength="45"
-                    type="text" class="validate" placeholder="What title are you giving your workout?"
+                    type="text" class="validate white-text" 
+                    placeholder="What title are you giving your workout?"
                     value="{{ post.workout_title }}" required>
                 </div>
             </div>
@@ -35,8 +39,10 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fa-solid fa-message white-text text-shadow prefix"></i>
-                    <textarea name="workout_description" id="workout_description" minlength="5" maxlength="500"
-                    class="materialize-textarea validate" placeholder="Let us all know how you did :D" required>
+                    <textarea name="workout_description" 
+                    id="workout_description" minlength="5" maxlength="500"
+                    class="materialize-textarea validate white-text" 
+                    placeholder="Let us all know how you did :D" required>
                     {{- post.workout_description -}}</textarea>
                 </div>
             </div>
@@ -45,7 +51,7 @@
                 <div class="input-field col s12">
                     <i class="fa-solid fa-heart-pulse prefix white-text text-shadow"></i>
                     <select id="rpe_scale" name="rpe_scale" class="validate" required>
-                        <option value="{{ post.rpe_scale }}"  selected>{{ post.rpe_scale }}</option>
+                        <option value="{{ post.rpe_scale }}" selected>{{ post.rpe_scale }}</option>
                         {% for i in range(1, 11) %}
                         {% if current_rpe_scale == i %}
                             <option value="{{ i }}" selected>{{ i }}</option>
@@ -64,7 +70,8 @@
                         Edit Post <i class="fa-solid fa-circle-check right"></i> 
                     </button>
                     <a href="{{ url_for('profile', username=session['user'])}}" 
-                    class="grey lighten-1 btn-large">Cancel<i class="fa-solid fa-backward right"></i></a>
+                    class="grey lighten-1 btn-large">Cancel<i 
+                    class="fa-solid fa-backward right"></i></a>
                 </div>
             </div>
         </form>

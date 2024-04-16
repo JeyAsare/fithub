@@ -4,7 +4,8 @@
         <div class="col s6 offset-s3 center-align">
             <div class="card purple darken-3 card-shape">
               <div class="card-content white-text">
-                <span class="card-title center-align text-shadow">{{ user.username.capitalize() }}'s Profile</span>
+                <span class="card-title center-align text-shadow">
+                    {{ user.username.capitalize() }}'s Profile</span>
               </div>
             </div>
         </div>
@@ -23,7 +24,8 @@
     </div>
     <!-- Update Profile Details -->
     <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_profile', username=session['user']) }}">
+        <form class="col s12 m8 offset-m2" method="POST" 
+        action="{{ url_for('edit_profile', username=session['user']) }}">
             <div class="card-panel cyan">
                 <!-- Username -->
                 <div class="row">
@@ -47,7 +49,8 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fa-regular fa-calendar-days white-text text-shadow prefix"></i>
-                        <input id="dob" name="dob" type="text" value="{{ user.dob }}" class="datepicker">
+                        <input id="dob" name="dob" type="text" 
+                        value="{{ user.dob }}" class="datepicker">
                     </div>
                 </div>
                 <!-- Profile Bio-->
@@ -55,7 +58,8 @@
                     <div class="input-field col s12">
                         <i class="fa-solid fa-message white-text text-shadow prefix"></i>
                         <textarea name="profile_bio" id="profile_bio" minlength="5" maxlength="500"
-                        class="materialize-textarea validate" placeholder="Tell us about yourself" required>
+                        class="materialize-textarea validate" 
+                        placeholder="Tell us about yourself" required>
                         {{- user.profile_bio -}}</textarea>
                     </div>
                 </div>
@@ -67,12 +71,15 @@
                         </button>
                     </div>
                     <div class="col s12 m6 center-align">
-                        <a data-target="delete_profile" class="modal-trigger purple darken-3 btn">Delete Profile <i class="fa-solid fa-trash right"></i></a>
+                        <a data-target="delete_profile" 
+                        class="modal-trigger purple darken-3 btn">
+                        Delete Profile <i class="fa-solid fa-trash right"></i></a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 center-align">
-                        <a href="{{ url_for('profile', username=session['user'])}}" class="grey lighten-1 btn">Back<i class="fa-solid fa-backward right"></i></a>
+                        <a href="{{ url_for('profile', username=session['user'])}}" 
+                        class="grey lighten-1 btn">Back<i class="fa-solid fa-backward right"></i></a>
                     </div>
                 </div>
                 <div id="delete_profile" class="modal modal-body">
@@ -81,8 +88,11 @@
                       <p>These changes cannot be reversed</p>
                     </div>
                     <div class="modal-footer">
-                      <a href="{{ url_for('delete_profile', user_id=user._id) }}" class="modal-close waves-effect purple darken-3 btn">Delete Profile<i class="fa-solid fa-trash right"></i></a>
-                      <a href="#!" class="modal-close waves-effect grey lighten-1 btn">Cancel<i class="fa-solid fa-x right"></i></a>
+                      <a href="{{ url_for('delete_profile', user_id=user._id) }}" 
+                      class="modal-close waves-effect purple darken-3 btn">Delete Profile<i 
+                      class="fa-solid fa-trash right"></i></a>
+                      <a href="#!" 
+                      class="modal-close waves-effect grey lighten-1 btn">Cancel<i class="fa-solid fa-x right"></i></a>
                     </div>
                   </div>
             </div>
