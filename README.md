@@ -53,6 +53,7 @@ This site has been designed to be very user friendly and intuitive through the e
 
 ## Wireframes 
 - All my wireframes were created on [Balsamiq](https://balsamiq.com/)
+- Note: These wireframes were the general structure and basis of my project so during the project I updated certain aspects and removed aspects which I thought were unecessary.
 
 <details><summary>Fithub Homepage</summary>
 <img src="documentation/wireframes/Homepage-desktop.png">
@@ -113,8 +114,8 @@ This site has been designed to be very user friendly and intuitive through the e
 - As a returning user, I would like to be able to have the freedom of deleting my account whenever I please and not have my personal data lying around.
 
 ### Site Admin Goals
-- As the site admin, I should be able to edit and delete any posts
-- As the site admin, I should be able to edit and delete any users.
+- As the site admin, I should be able to delete any posts that I believe are not appropiate to be displayed on Fithub
+- As the site admin, I should be able to delete any users who are not using Fithub for its uses and purposes..
 
 ## Colour Scheme
 
@@ -157,7 +158,10 @@ I have had great time making this project. Its opened my mind to many possibilit
 
 - I would like to create functionality for users to upload videos of their workouts and add them to thier posts to create more interactivity.
 - I would like to create a reward system for individuals who have maybe hit 20 posts or 50 posts etc.
-- I have asked for users emails so maybe in the future be able to allow users to suscribe to a newsletter.
+- I have required for users to provide their emails so maybe in the future be able to allow users to suscribe to a newsletter.
+- I would've liked to have my add post page more descriptive and tailored to the workout for users. E.g. have fields for workout sets, workout weights and workout reps. This would help users to easily note workouts made by other users.
+- I would like to create a favourites page for users. This would help users pick their favourite workouts and keep them on a page that they can access easily instead of scrolling through the communities page to re find workouts that they liked.
+- I would like to create a comments section to increase online interation with users.
 
 ## Deployment & Local Development
 
@@ -259,3 +263,5 @@ You can fork this repository by using the following steps:
 ### Acknowledgements
 
 - I would like to thank Code Institute for giving me the platform to be able to create such sites and applications.
+- I would like to thank my family for their encouragement through this Milestone Project 3. 
+I used Youtube quite a bit to assist me with my project and I came across [Corey Schafer](https://www.youtube.com/@coreyms) who had videos on Python Flask which helped me.
