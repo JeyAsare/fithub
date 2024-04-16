@@ -112,6 +112,7 @@ This site has been designed to be very user friendly and intuitive through the e
 - As a returning user, I would like to be able to see my posts saved and stored somewhere I can access.
 - As a returning user, I would like to be able to have the ability to change features of my account.
 - As a returning user, I would like to be able to have the freedom of deleting my account whenever I please and not have my personal data lying around.
+- As a returning user, I would like to be able to have the freedom of deleting my own posts whenever I please.
 
 ### Site Admin Goals
 - As the site admin, I should be able to delete any posts that I believe are not appropiate to be displayed on Fithub

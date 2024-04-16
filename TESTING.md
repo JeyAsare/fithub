@@ -108,6 +108,17 @@ I used Lighthouse from my dev tools to analyse the efficiency of my site from de
 ## User Story Tests
 
 | User Story | Action | Screenshot |
+| --- | --- | --- |
+| As a new user, I would like to register and become a part of the community as easily as possible. | Registration Page | <img src="documentation/features/Register.png"> |
+| As a new user, I would like to be able to view the workout from others and get insight through an explanation of the workout. | Community Page | <img src="documentation/features/Community Page.png"> |
+| As a new user, I would also like to post content for people to see how I would do and maybe give me advice on how to improve future workouts. | Add Post Page | <img src="documentation/features/Add-Workout.png"> |
+| As a new user, I would like to search for different types of workouts that people will be doing in order for me to tailor my workout. | Search Bar | <img src="documentation/features/Search-Bar.png"> |
+| As a returning user, I would like to be able to log in easily and efficiently. | Log In Page | <img src="documentation/features/Log-In.png"> |
+| As a returning user, I would like to be able to see my posts saved and stored somewhere I can access. | Profile Page | <img src="documentation/features/Profile Page.png"> |
+| As a returning user, I would like to be able to have the ability to change features of my account. | Edit Post Page | <img src="documentation/features/Edit-Post-Page2.png"> |
+| As a returning user, I would like to be able to have the freedom of deleting my account whenever I please and not have my personal data lying around. | Delete Profile Modal | <img src="documentation/features/Delete-Profile.png"> |
+| As a returning user, I would like to be able to have the freedom of deleting my own posts whenever I please. | Delete Post Modal | Screenshot |
+
 
 
 ## Device Testing
