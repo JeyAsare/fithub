@@ -15,7 +15,7 @@
                     <option value="" disabled selected>Choose your option</option>
                     {% for workout in workouts %}
                     <option value="{{ workout.workout_category }}">
-                        {{ workout.workout_category }}</option>
+                        {{- workout.workout_category -}}</option>
                     {% endfor %}
                 </select>
                 <label for="workout_category" 
