@@ -55,3 +55,44 @@ I used [W3C HTML Validator](https://validator.w3.org/) to validate my html pages
 <details><summary>Python Linter</summary>
 <img src="documentation/validation/CI Python Linter.png">
 </details>
+
+## Lighthouse
+
+<details><summary>Home View</summary>
+<img src="documentation/lighthouse/Home Desktop View.png">
+<img src="documentation/lighthouse/Home View Mobile.png">
+</details>
+
+<details><summary>Log In View</summary>
+<img src="documentation/lighthouse/Log In View Desktop.png">
+<img src="documentation/lighthouse/Log In View Mobile.png">
+</details>
+
+<details><summary>Register View</summary>
+<img src="documentation/lighthouse/Register View Desktop.png">
+<img src="documentation/lighthouse/Register View Mobile.png">
+</details>
+
+<details><summary>Workout Categories View</summary>
+<img src="documentation/lighthouse/Workout Categories View Desktop.png">
+<img src="documentation/lighthouse/Workout Categories View Mobile.png">
+</details>
+
+<details><summary>Community View</summary>
+<img src="documentation/lighthouse/Community View Desktop.png">
+<img src="documentation/lighthouse/Community View Mobile.png">
+</details>
+
+<details><summary>Add Post View</summary>
+<img src="documentation/lighthouse/Add Post View Desktop.png">
+<img src="documentation/lighthouse/Add Post View Mobile.png">
+</details>
+
+<details><summary>Edit Post View</summary>
+<img src="documentation/lighthouse/Edit Post View Desktop.png">
+<img src="documentation/lighthouse/Edit Post View Mobile.png">
+</details>
+
+<details><summary>Edit Profile View</summary>
+<img src="documentation/lighthouse/Edit Profile View Desktop.png">
+</details>
