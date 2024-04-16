@@ -243,6 +243,18 @@ i.fa-solid.fa-person-running.right {
     }
 }
 
+@media only screen and (max-width: 632px){
+    .make-post, .view-profile {
+        font-size: x-small;
+}
+}
+
+@media only screen and (max-width: 525px){
+    .make-post, .view-profile {
+        font-size: 7px;
+}
+}
+
 .workout-category-text{
     font-size: small;
 }

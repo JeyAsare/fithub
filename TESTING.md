@@ -198,19 +198,6 @@ Register Page
 | Log In Here Link | When I click on the Log In Here  link I should be taken to the register page. | Click on the Log In Here link | Once I click on the Log In Here link I should be taken to the log in page | Pass |
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Device Testing
 
 - This site was tested on the following devices:
