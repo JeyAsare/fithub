@@ -76,6 +76,12 @@ I used Lighthouse from my dev tools to analyse the efficiency of my site from de
 <img src="documentation/lighthouse/Log In View Mobile.png">
 </details>
 
+<details><summary>Profile View</summary>
+<img src="documentation/lighthouse/Profile View Desktop.png">
+<img src="documentation/lighthouse/Profile View Mobile.png">
+</details>
+
+
 <details><summary>Register View</summary>
 <img src="documentation/lighthouse/Register View Desktop.png">
 <img src="documentation/lighthouse/Register View Mobile.png">
@@ -103,6 +109,7 @@ I used Lighthouse from my dev tools to analyse the efficiency of my site from de
 
 <details><summary>Edit Profile View</summary>
 <img src="documentation/lighthouse/Edit Profile View Desktop.png">
+<img src="documentation/lighthouse/Edit Profile View Mobile.png">
 </details>
 
 ## User Story Tests
