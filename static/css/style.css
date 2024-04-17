@@ -205,6 +205,11 @@ i.fa-solid.fa-person-running.right {
     border-style: ridge;
     border-color: blueviolet;
 }
+/*-- Workout Categories Page --*/
+
+.workout-category-text{
+    font-size: small;
+}
 
 /* -- Community Page -- */
 
@@ -223,8 +228,9 @@ i.fa-solid.fa-person-running.right {
 }
 
 .social-links{
+    display: inline;
     font-weight: 700;
-    font-size: x-large;
+    font-size: large;
     color: rgba(25, 195, 141, 0.794);
     padding-bottom: 15px;
 }
@@ -251,10 +257,26 @@ i.fa-solid.fa-person-running.right {
 
 @media only screen and (max-width: 525px){
     .make-post, .view-profile {
-        font-size: 7px;
+        font-size: 10px;
 }
 }
 
-.workout-category-text{
-    font-size: small;
+@media only screen and (max-width: 482px){
+    .make-post, .view-profile {
+        font-size: 7px;
+    }
+    .social-links {
+        font-size: small;
+    }
+    .workout-category-text {
+        font-size: 12px;
+    }
+    
 }
+
+@media only screen and (max-width: 1089px){
+    div  > .col.s12.m4.center-align{
+        margin: 5px;
+    }
+}
+
