@@ -303,6 +303,26 @@ def add_category():
         return redirect(url_for('login'))
 
 
+# Edit Workout Category route
+@app.route("/edit_category/<workout_id>", methods=["GET", "POST"])
+def edit_category(workout_id):
+    workout = mongo.db.workouts.find_one({"_id": ObjectId(workout_id)})
+    if request.method == "POST":
+        # Retrieve updated data from the form
+        edited_category = {
+            "workout_category": request.form.get("workout_category"),
+            "workout_category_image": request.form.get("workout_category_image"),
+            "workout_category_description": request.form.get("workout_category_description") }
+
+        mongo.db.workouts.update_one(
+            {"_id": ObjectId(workout_id)}, {"$set": edited_category})
+        flash("Category Successfully Updated")
+        return redirect(url_for("workout_categories"))
+
+    return render_template(
+        "edit_category.html", workout=workout)
+
+
 # Edit Profile route
 @app.route("/edit_profile<username>", methods=["GET", "POST"])
 def edit_profile(username):
