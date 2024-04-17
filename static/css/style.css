@@ -235,6 +235,8 @@ i.fa-solid.fa-person-running.right {
     padding-bottom: 15px;
 }
 
+/* -- Media Screens -- */
+
 @media only screen and (max-width: 600px){
     i.fa-solid.fa-person-running.right{
         z-index: 9999;
