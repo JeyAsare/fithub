@@ -70,11 +70,13 @@
                             Edit Profile <i class="fa-solid fa-circle-check postfix"></i> 
                         </button>
                     </div>
+                <!-- delete profile button -->
                     <div class="col s12 m4 center-align">
                         <a data-target="delete_profile" 
                         class="modal-trigger purple darken-3 btn">
                         Delete Profile <i class="fa-solid fa-trash postfix"></i></a>
                     </div>
+                <!-- back button -->
                     <div class="col s12 m4 center-align">
                         <a href="{{ url_for('profile', username=session['user'])}}" 
                         class="grey lighten-1 btn">Back<i class="fa-solid fa-backward postfix"></i></a>

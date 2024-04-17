@@ -323,6 +323,18 @@ def edit_category(workout_id):
         "edit_category.html", workout=workout)
 
 
+# Delete Workout Category Route
+@app.route("/delete_category/<workout_id>")
+def delete_category(workout_id):
+    if not session.get("user"):
+        flash("You are not logged in")
+        return redirect(url_for('login'))
+
+    mongo.db.workouts.delete_one({"_id": ObjectId(workout_id)})
+    flash("Category has been deleted")
+    return redirect(url_for("workout_categories"))
+
+
 # Edit Profile route
 @app.route("/edit_profile<username>", methods=["GET", "POST"])
 def edit_profile(username):
