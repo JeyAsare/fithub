@@ -14,7 +14,8 @@ $(document).ready(function(){
       });
     $('.modal').modal();
   });
-
+  
+/* This function was taken online and implemented */
   function visibility(event) {
     let element = event.target.parentNode.parentNode;
     let input = element.querySelector("input");

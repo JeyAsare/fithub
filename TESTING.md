@@ -38,6 +38,14 @@ I used [W3C HTML Validator](https://validator.w3.org/) to validate my html pages
 <img src="documentation/validation/Register HTML.png">
 </details>
 
+<details><summary>Edit Category HTML</summary>
+<img src="documentation/validation/Edit Category HTML.png">
+</details>
+
+<details><summary>Add Category HTML</summary>
+<img src="documentation/validation/Add Category HTML.png">
+</details>
+
 ### CSS Validation
 
 I used [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) to validate my CSS.
@@ -110,6 +118,16 @@ I used Lighthouse from my dev tools to analyse the efficiency of my site from de
 <details><summary>Edit Profile View</summary>
 <img src="documentation/lighthouse/Edit Profile View Desktop.png">
 <img src="documentation/lighthouse/Edit Profile View Mobile.png">
+</details>
+
+<details><summary>Edit Category View</summary>
+<img src="documentation/lighthouse/Edit Category Desktop View.png">
+<img src="documentation/lighthouse/Edit category mobile view.png">
+</details>
+
+<details><summary>Add Category View</summary>
+<img src="documentation/lighthouse/Add category desktop view.png">
+<img src="documentation/lighthouse/Add category mobile view.png">
 </details>
 
 ## User Story Tests
@@ -224,4 +242,16 @@ The following browsers I have used to test the site:
 * Safari
 * Microsoft Edge
 
-Other device testing has been done by friends.
+Other device testing has been done by friends. All have Iphones.
+Feedback from friends:
+"Its simple I like it"
+"It looks very good. Easy to sign up and navigate through"
+
+## Bugs
+
+| Issue Description | Resolution | Screenshot |
+| --- | --- | --- |
+| Datepicker attribute from materialize seems to work on larger devices however when you click on a year on Iphone devices the year given is not accurate to the date a user selected e.g. if you clicked 1998 it'll probably show as 2000 | No resolution |
+| My brand logo had an i element out of place when I decreased the screen size to mobile view | Yes, I changed the CSS of the i element | <img src="documentation/bugs/Brand logo bug.png" > |
+| I tried to create an option to allow users to upload media whether it be a video or an image of them working out but I ran into many errors. | I chose to leave that section out of my project and carry on without it. |
+
