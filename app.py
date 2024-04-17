@@ -130,8 +130,7 @@ def logout():
 # Add workout route
 @app.route("/add_post", methods=["GET", "POST"])
 def add_post():
-    logged_in_username = session.get('user')
-    if logged_in_username:
+    if session.get('user'):
         if request.method == "POST":
             # retrieve data from the form
             workout_category = request.form.get("workout_category")
@@ -275,6 +274,33 @@ def workout_categories():
 
     workouts = list(mongo.db.workouts.find())
     return render_template("workout_categories.html", workouts=workouts)
+
+
+# Add Workout Category route
+@app.route("/add_category", methods=["GET", "POST"])
+def add_category():
+    if session.get('user'):
+        if request.method == "POST":
+            # retrieve data from the form
+            workout_category = request.form.get("workout_category")
+            workout_category_image = request.form.get("workout_category_image")
+            workout_category_description = request.form.get("workout_category_description")
+
+            # Create a new workout post
+            workout_category = {
+                "workout_category": workout_category,
+                "workout_category_image": workout_category_image,
+                "workout_category_description": workout_category_description }
+
+            mongo.db.workouts.insert_one(workout_category)
+            flash("Category Successfully Added")
+            return redirect(url_for("add_category", username=session["user"]))
+
+        workouts = mongo.db.workouts.find()
+        return render_template("add_category.html", workouts=workouts)
+    else:
+        flash("Please Log In")
+        return redirect(url_for('login'))
 
 
 # Edit Profile route
