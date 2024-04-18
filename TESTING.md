@@ -165,6 +165,8 @@ I also used [WAVE]() to test the accessibility of my sites.
 | As a returning user, I would like to be able to have the ability to change features of my account. | Edit Post Page | <img src="documentation/features/Edit-Post-Page2.png"> |
 | As a returning user, I would like to be able to have the freedom of deleting my account whenever I please and not have my personal data lying around. | Delete Profile Modal | <img src="documentation/features/Delete-Profile.png"> |
 | As a returning user, I would like to be able to have the freedom of deleting my own posts whenever I please. | Delete Post Modal | <img src="documentation/features/Delete Post Modal.png"> |
+| As the site admin, I should be able to delete any posts that I believe are not appropiate to be displayed on Fithub | Community Page (admin acesses edit and delete buttons) | <img src="documentation/features/admin access 1.png"> |
+| As the site admin, I have the access to add, edit and delete categories | Workout Category Pages | <img src="documentation/features/admin access 2.png"> <img src="documentation/features/admin access 3.png">  |
 
 
 ## Manual Testing 

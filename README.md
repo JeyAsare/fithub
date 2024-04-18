@@ -121,7 +121,7 @@ This site has been designed to be very user friendly and intuitive through the e
 
 ### Site Admin Goals
 - As the site admin, I should be able to delete any posts that I believe are not appropiate to be displayed on Fithub
-- As the site admin, I should be able to delete any users who are not using Fithub for its uses and purposes.
+- As the site admin, I have the access to add, edit and delete categories
 
 ## Colour Scheme
 
