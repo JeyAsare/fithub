@@ -208,9 +208,9 @@ def edit_post(post_id):
 # Delete workout route
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
-
+    # grab id of specific post that needs to be deleted
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-
+    # check if user is logged in
     if not session.get("user"):
         flash("You are not logged in.")
         return redirect(url_for("login"))
@@ -218,7 +218,7 @@ def delete_post(post_id):
             "profile_by"] and session.get("user") != "admin":
         flash("You are not allowed to delete this post.")
         return redirect(url_for("community"))
-
+    # redirect user to their profile if they aren't the admin
     if session.get("user") != "admin":
         mongo.db.posts.delete_one({"_id": ObjectId(post_id)})
         flash("Post Successfully Removed")
@@ -284,13 +284,14 @@ def add_category():
             # retrieve data from the form
             workout_category = request.form.get("workout_category")
             workout_category_image = request.form.get("workout_category_image")
-            workout_category_description = request.form.get("workout_category_description")
+            workout_category_description = request.form.get(
+                "workout_category_description")
 
             # Create a new workout post
             workout_category = {
                 "workout_category": workout_category,
                 "workout_category_image": workout_category_image,
-                "workout_category_description": workout_category_description }
+                "workout_category_description": workout_category_description}
 
             mongo.db.workouts.insert_one(workout_category)
             flash("Category Successfully Added")
@@ -311,8 +312,10 @@ def edit_category(workout_id):
         # Retrieve updated data from the form
         edited_category = {
             "workout_category": request.form.get("workout_category"),
-            "workout_category_image": request.form.get("workout_category_image"),
-            "workout_category_description": request.form.get("workout_category_description") }
+            "workout_category_image": request.form.get(
+                "workout_category_image"),
+            "workout_category_description": request.form.get(
+                "workout_category_description")}
 
         mongo.db.workouts.update_one(
             {"_id": ObjectId(workout_id)}, {"$set": edited_category})
@@ -419,5 +422,5 @@ def page_not_found(error):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
             
