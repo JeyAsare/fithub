@@ -280,6 +280,8 @@ You can fork this repository by using the following steps:
 ## Media 
 
 - I got all my images from [Midjourney](https://www.midjourney.com/home)
+- All icon elements came from Font Awesome.
+- The Javascript functionality that I used came from Materialize.
 
 ### Acknowledgements
 
