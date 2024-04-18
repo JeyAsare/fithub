@@ -1,7 +1,7 @@
 # FITHUB Testing Page
 
-View live site [FITHUB](https://fithub-jeremy-0a170ab7e3ed.herokuapp.com/)
-Click on [README.md](README.md) to head back.
+- View live site [FITHUB](https://fithub-jeremy-0a170ab7e3ed.herokuapp.com/)
+- Click on [README.md](README.md) to head back.
 
 ## Validation 
 

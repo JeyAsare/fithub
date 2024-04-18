@@ -1,6 +1,6 @@
 # FITHUB
 
-View live site [FITHUB](https://fithub-jeremy-0a170ab7e3ed.herokuapp.com/)
+- View live site [FITHUB](https://fithub-jeremy-0a170ab7e3ed.herokuapp.com/)
 
 ## Introduction
 
