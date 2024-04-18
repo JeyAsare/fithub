@@ -52,10 +52,11 @@ I received this warning from the validator. This warning came up because I had n
 <img src="documentation/validation/Add Category HTML.png">
 </details>
 
-- For my Edit Post HTML, I receieved an error. This page seemed fine from what I've seen and I was unable to find a solution on how to resolve this problem.
 <details><summary>Edit Post HTML</summary>
 <img src="documentation/validation/Edit Post HTML.png">
 </details>
+
+- For my Edit Post HTML, I receieved an error. This page seemed fine from what I've seen and I was unable to find a solution on how to resolve this problem.
 
 ### CSS Validation
 
