@@ -1,5 +1,6 @@
 # FITHUB Testing Page
 
+View live site [FITHUB](https://fithub-jeremy-0a170ab7e3ed.herokuapp.com/)
 Click on [README.md](README.md) to head back.
 
 ## Validation 
@@ -49,6 +50,11 @@ I received this warning from the validator. This warning came up because I had n
 
 <details><summary>Add Category HTML</summary>
 <img src="documentation/validation/Add Category HTML.png">
+</details>
+
+- For my Edit Post HTML, I receieved an error. This page seemed fine from what I've seen and I was unable to find a solution on how to resolve this problem.
+<details><summary>Edit Post HTML</summary>
+<img src="documentation/validation/Edit Post HTML.png">
 </details>
 
 ### CSS Validation
@@ -132,6 +138,19 @@ I used Lighthouse from my dev tools to analyse the efficiency of my site from de
 <details><summary>Add Category View</summary>
 <img src="documentation/lighthouse/Add category desktop view.png">
 <img src="documentation/lighthouse/Add category mobile view.png">
+</details>
+
+### WAVE Testing
+
+I also used [WAVE]() to test the accessibility of my sites.
+- I came across a couple of erros:
+1. An error arose becuase I had no text in a link element. These errors mostly came from my social links which instead of containing text, contained icons instead.
+2. The contrast of my white text on blue background forms came up on errors how I am confident that my text is visible to all users. I had my mum eye test the white text without her glasses and she had no issues reading the text.
+
+<details><summary>WAVE Testing images</summary>
+<img src="documentation/wave/homepage wave.png">
+<img src="documentation/wave/login wave.png">
+<img src="documentation/wave/register wave.png">
 </details>
 
 ## User Story Tests
@@ -267,4 +286,5 @@ Feedback from friends:
 | Datepicker attribute from materialize seems to work on larger devices however when you click on a year on Iphone devices the year given is not accurate to the date a user selected e.g. if you clicked 1998 it'll probably show as 2000 | No resolution | N/A
 | My brand logo had an i element out of place when I decreased the screen size to mobile view | Yes, I changed the CSS of the i element | <img src="documentation/bugs/Brand logo bug.png" > |
 | I tried to create an option to allow users to upload media whether it be a video or an image of them working out but I ran into many errors. | I chose to leave that section out of my project and carry on without it. | N/A |
+| When I was using my delete functionality my posts would delete chronilogically instead of deleting specified posts. | I put my delete post button inside my edit post form. | <img src="documentation/bugs/profile edit delete.png"> <img src="documentation/bugs/profile edit card.png"> <img src="documentation/bugs/delete post edit form.png"> |
 

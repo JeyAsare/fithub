@@ -1,5 +1,7 @@
 # FITHUB
 
+View live site [FITHUB](https://fithub-jeremy-0a170ab7e3ed.herokuapp.com/)
+
 ## Introduction
 
 I was tasked with having to devleop a full stack site which stores and manages data using either a relational or non-relational database. 
