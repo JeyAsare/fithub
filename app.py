@@ -383,6 +383,7 @@ def delete_profile(user_id):
 # Like Post Route
 @app.route("/like_post/<_id>", methods=["GET", "POST"])
 def like_post(_id):
+    # This code was taken and edited from Mini Tales Project
     _id = _id
     liked_post = mongo.db.users.find_one({
         "username": session["user"]}).get("liked_post", [])
