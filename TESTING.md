@@ -231,7 +231,9 @@ Workout Categories Page
 
 | Feature | Expected Outcome | Action | Result | Pass/Fail |
 | --- | --- | --- | --- | --- |
-| Post Workout Button | When I click on this button I should be taken to the add post page. | Click on the Post Workout Button | Directed to add post page | Pass |
+| Add Category button | When I click on the Add Category button I expect to be taken to the add category form page | Click on the Add Category button | Directed to the Add Category Page | Pass |
+| Edit Category button | When I click on the Edit Category button I expect to be taken to the edit category form page | Click on the Edit Category button | Directed to the Edit Category Page | Pass |
+| Delete Category button | When I click on the Delete Category button I expect the category to be deleted from the site | Click on the Delete Category button | Category that I clicked on should be deleted | Pass |
 
 Log In Page
 
