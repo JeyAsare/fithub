@@ -49,6 +49,9 @@ This site has been designed to be very user friendly and intuitive through the e
 | Edit Post Form | This form allows users to edit already posted workouts. | <img src="documentation/features/Edit-Post-Page2.png"> |
 | Flash Messages | This will flash up to notify users when they have submitted a form on the FitHub site. | <img src="documentation/features/Flash-Message.png"> |
 | Log Out | This function logs users out of the site. | <img src="documentation/features/Log-Out.png"> |
+| Workout Categories | This section is for users to see each workout category and have an explanation of what each workout category is.  | <img src="documentation/features/workout categories.png"> |
+| This form is soley for the admin of the site. If the admin wants to add another workout category to the site then they would use this form. | Value | <img src="documentation/features/Add workout category.png"> |
+| Edit Workout Category | This form is soley for the admin of the site. If the admin decides to change any information on each category, then they could do so here. | <img src="documentation/features/Edit workout category.png"> |
 
 
 ## Wireframes 
@@ -116,11 +119,24 @@ This site has been designed to be very user friendly and intuitive through the e
 
 ### Site Admin Goals
 - As the site admin, I should be able to delete any posts that I believe are not appropiate to be displayed on Fithub
-- As the site admin, I should be able to delete any users who are not using Fithub for its uses and purposes..
+- As the site admin, I should be able to delete any users who are not using Fithub for its uses and purposes.
 
 ## Colour Scheme
 
-The main colours I used were Orange and Blue. The reason for these colours were that they were a good blend whilst keeping my site profesional but still upbeat. I changed the shades of blue a couple of times but kept orange relatively consistent.
+The mainly used materialize colours for my site. I used colours such as:
+- Purple, Darken-3
+- Teal, Accent-3
+- Blue-Grey lighten-1
+
+I mainly used the White-Text materialize class.
+I also used the Text-Shadow property to help my text stand out so viewers could clearly see all text.
+
+These colours gave my site a great blend and an upbeat but professional look to it.
+
+Other colours used:
+- rgba(25, 195, 141, 0.794). This colour combination was used for my social media links.
+- blueviolet. This colour was used for my card borders.
+- linear-gradient rgba(14, 148, 226, 0.751),rgba(25, 195, 141, 0.794). I used this colour blend for my my background colour and modal sections.
 
 ## Typogrphy 
 
@@ -163,6 +179,10 @@ I have had great time making this project. Its opened my mind to many possibilit
 - I would've liked to have my add post page more descriptive and tailored to the workout for users. E.g. have fields for workout sets, workout weights and workout reps. This would help users to easily note workouts made by other users.
 - I would like to create a favourites page for users. This would help users pick their favourite workouts and keep them on a page that they can access easily instead of scrolling through the communities page to re find workouts that they liked.
 - I would like to create a comments section to increase online interation with users.
+
+## Testing
+
+Click here [TESTING.md](TESTING.md) to view validation and tests for my site.
 
 ## Deployment & Local Development
 
@@ -265,4 +285,5 @@ You can fork this repository by using the following steps:
 
 - I would like to thank Code Institute for giving me the platform to be able to create such sites and applications.
 - I would like to thank my family for their encouragement through this Milestone Project 3. 
-I used Youtube quite a bit to assist me with my project and I came across [Corey Schafer](https://www.youtube.com/@coreyms) who had videos on Python Flask which helped me.
+- I used Youtube quite a bit to assist me with my project and I came across [Corey Schafer](https://www.youtube.com/@coreyms) who had videos on Python Flask which helped me.
+- I also used stackoverflow to help assist with my site and also help with my visibility functionality.

@@ -1,10 +1,15 @@
 # FITHUB Testing Page
 
+Click on [README.md](README.md) to head back.
+
 ## Validation 
 
 ### HTML Validation
 
 I used [W3C HTML Validator](https://validator.w3.org/) to validate my html pages. I used the URL input from my deployed site on heroku to validate my code so any errors for my jinja templating were uncovered.
+
+I received this warning from the validator. This warning came up because I had no child h2-h6 elements below my section element however, as it was just a warning and didnt affect my the validity of my HTML code I chose to ignore it.
+<img src="documentation/validation/Html warning.png">
 
 <details><summary>Home HTML</summary>
 <img src="documentation/validation/Home HTML.png">
@@ -89,7 +94,6 @@ I used Lighthouse from my dev tools to analyse the efficiency of my site from de
 <img src="documentation/lighthouse/Profile View Mobile.png">
 </details>
 
-
 <details><summary>Register View</summary>
 <img src="documentation/lighthouse/Register View Desktop.png">
 <img src="documentation/lighthouse/Register View Mobile.png">
@@ -148,14 +152,14 @@ I used Lighthouse from my dev tools to analyse the efficiency of my site from de
 
 To make sure there were no faults or issues with my site I took the time to test all the features of my sight to make sure they were functioning correctly.
 
-Home Page  (New User)
+Home Page
 
 | Feature | Expected Outcome | Action | Result | Pass/Fail |
 | --- | --- | --- | --- | --- |
 | Brand Logo | Brand Logo is expected to become a link to the homepage for users. | Click on Brand Logo | Take user to homepage | Pass |
 | Log In (Top Navbar) | Log In Nav link is supposed to take me to the log in page  | Click Log In Nav link | Take user to login page | Pass |
 | Register (Top Navbar) | Register Nav link is supposed to take me to the register page  | Click on Register Nav link | Take user to register page | Pass |
-| Footer links (social media links) | Footer links are supposed to take me to social media site I clicked on | Click on footer links | Take user to social media site that they clicked on | Pass/ |
+| Footer links (social media links) | Footer links are supposed to take me to social media site I clicked on | Click on footer links | Take user to social media site that they clicked on | Pass |
 | "SIGN UP HERE" anchor link | This link should only be for first time users to take them to the register page. Once the user signs up or is logged in the anchor link and text should not be seen. | Click on the anchor link and sign up and once signed up go back to the homepage. | Take the user to register page. Once signed up and taken back to the homepage. Link should not be visible anymore | Pass |
 
 Profile Page
@@ -222,18 +226,27 @@ Register Page
 | Register Now Button | When I click on the Register now button I expect to be registered. | Click on the Register now button. | Once I click on the Register now button I should be registered on the site. | Pass |
 | Log In Here Link | When I click on the Log In Here  link I should be taken to the register page. | Click on the Log In Here link | Once I click on the Log In Here link I should be taken to the log in page | Pass |
 
+### Defensive Programming
+
+- Through defensive programming I have enabled an 'admin' account to have certain accessibilities to the site which normal users don't have.
+
+| Defensive Coding | HTML code | Screenshot |
+| --- | --- | --- |
+| Only the admin has access to deleting users posts however the admin account has no access to edit other users posts. (Community Page) | <img src="documentation/defensive_prog/defensive admin1.png"> | <img src="documentation/defensive_prog/defensive admin11.png"> |
+| Only the admin has access to adding and and editing workout categories | <img src="documentation/defensive_prog/defensive admin2.png"> <img src="documentation/defensive_prog/defensive admin22.png"> | <img src="documentation/defensive_prog/defensive admin222.png"> |
+
 
 ## Device Testing
 
-- This site was tested on the following devices:
+This site was tested on the following devices:
 
-- Desktop
+#### Desktop
 * MAC
 
-- Laptop
+#### Laptop
 * Macbook Pro
 
-- Iphone
+#### Iphone
 * Iphone 14 Pro Max
 
 The following browsers I have used to test the site:
@@ -251,7 +264,7 @@ Feedback from friends:
 
 | Issue Description | Resolution | Screenshot |
 | --- | --- | --- |
-| Datepicker attribute from materialize seems to work on larger devices however when you click on a year on Iphone devices the year given is not accurate to the date a user selected e.g. if you clicked 1998 it'll probably show as 2000 | No resolution |
+| Datepicker attribute from materialize seems to work on larger devices however when you click on a year on Iphone devices the year given is not accurate to the date a user selected e.g. if you clicked 1998 it'll probably show as 2000 | No resolution | N/A
 | My brand logo had an i element out of place when I decreased the screen size to mobile view | Yes, I changed the CSS of the i element | <img src="documentation/bugs/Brand logo bug.png" > |
-| I tried to create an option to allow users to upload media whether it be a video or an image of them working out but I ran into many errors. | I chose to leave that section out of my project and carry on without it. |
+| I tried to create an option to allow users to upload media whether it be a video or an image of them working out but I ran into many errors. | I chose to leave that section out of my project and carry on without it. | N/A |
 
